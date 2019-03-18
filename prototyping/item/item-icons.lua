@@ -1,43 +1,43 @@
 
 if not LSlib.item then require "item" else
 
-  function LSlib.item.getIcons(prototypeType, prototypeName, layerScale, layerShift, layerTint)
-    local prototypeIcon = data.raw[prototypeType][prototypeName].icon
-
-    if prototypeIcon then
-      return { -- icons table
-        { -- single layer
-          ["icon"     ] = prototypeIcon,
-          ["icon_size"] = data.raw[prototypeType][prototypeName].icon_size,
-          ["tint"     ] = layerTint,
-          ["scale"    ] = layerScale,
-          ["shift"    ] = layerShift,
-        }
-      }
-    else
-
-      local prototypeIconSize = data.raw[prototypeType][prototypeName].icon_size
+  function LSlib.item.getIcons(itemType, itemName, layerScale, layerShift, layerTint)
+    if data.raw[itemType][itemName].icons then -- icons present
+      local prototypeIconSize = data.raw[itemType][itemName].icon_size
 
       local prototypeIcons = {}
-      for iconLayerIndex, iconLayer in pairs(data.raw[prototypeType][prototypeName].icons) do
+      for iconLayerIndex, iconLayer in pairs(data.raw[itemType][itemName].icons) do
         prototypeIcons[iconLayerIndex] = {
           ["icon"     ] = iconLayer.icon,
           ["icon_size"] = iconLayer.icon_size or prototypeIconSize, -- prototypeIconSize if not icon_size specified in layer
           ["tint"     ] = (iconLayer.tint or layerTint) and {
-            r = (iconLayer.tint and (iconLayer.tint.r or iconLayer.tint[1]) or .5) * (layerTint and (layerTint.r or layerTint[1]) or 1),
-            g = (iconLayer.tint and (iconLayer.tint.g or iconLayer.tint[2]) or .5) * (layerTint and (layerTint.g or layerTint[2]) or 1),
-            b = (iconLayer.tint and (iconLayer.tint.b or iconLayer.tint[3]) or .5) * (layerTint and (layerTint.b or layerTint[3]) or 1),
-            a = (iconLayer.tint and (iconLayer.tint.a or iconLayer.tint[4]) or  0) * (layerTint and (layerTint.a or layerTint[4]) or 0),
+            r = (iconLayer.tint and (iconLayer.tint.r or iconLayer.tint[1]) or 1) * (layerTint and (layerTint.r or layerTint[1]) or 1),
+            g = (iconLayer.tint and (iconLayer.tint.g or iconLayer.tint[2]) or 1) * (layerTint and (layerTint.g or layerTint[2]) or 1),
+            b = (iconLayer.tint and (iconLayer.tint.b or iconLayer.tint[3]) or 1) * (layerTint and (layerTint.b or layerTint[3]) or 1),
+            a = (iconLayer.tint and (iconLayer.tint.a or iconLayer.tint[4]) or 0) * (layerTint and (layerTint.a or layerTint[4]) or 0),
           } or nil,
-          ["scale"    ] = (iconLayer.scale or 1) * layerScale, -- 1            if not scale     specified in layer
+          ["scale"    ] = (iconLayer.scale or 1) * (layerScale or 1),
           ["shift"    ] = {
-            (iconLayer.shift or {0, 0})[1] + layerShift[1],    -- {0,0}        if not shift     specified in layer
-            (iconLayer.shift or {0, 0})[2] + layerShift[2],
+            (iconLayer.shift or {0, 0})[1] + (layerShift or {0,0})[1],
+            (iconLayer.shift or {0, 0})[2] + (layerShift or {0,0})[2],
           },
         }
       end
       return util.table.deepcopy(prototypeIcons)
 
+    else -- icon + icon_size present
+      local prototypeIcon = data.raw[itemType][itemName].icon
+
+      return { -- icons table
+        { -- single layer
+          ["icon"     ] = prototypeIcon,
+          ["icon_size"] = data.raw[itemType][itemName].icon_size,
+          ["tint"     ] = (    LSlib.utils.table.isTable(layerTint)  and
+                          (not LSlib.utils.table.isEmpty(layerTint)) and layerTint) or nil,
+          ["scale"    ] = layerScale,
+          ["shift"    ] = layerShift,
+        }
+      }
     end
   end
 

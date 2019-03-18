@@ -8,7 +8,7 @@ if not LSlib.recipe then require "recipe" else
       table.insert(data.raw["recipe"][recipeName].ingredients, {
         ["type"] = ingredientType,
         ["name"] = ingredientName,
-        ["amount"] = ingredientAmount
+        ["amount"] = ingredientAmount or 1,
       })
     end
 
@@ -16,7 +16,7 @@ if not LSlib.recipe then require "recipe" else
       table.insert(data.raw["recipe"][recipeName].normal.ingredients, {
         ["type"] = ingredientType,
         ["name"] = ingredientName,
-        ["amount"] = ingredientAmount
+        ["amount"] = ingredientAmount or 1,
       })
     end
 
@@ -24,7 +24,7 @@ if not LSlib.recipe then require "recipe" else
       table.insert(data.raw["recipe"][recipeName].expensive.ingredients, {
         ["type"] = ingredientType,
         ["name"] = ingredientName,
-        ["amount"] = ingredientAmount
+        ["amount"] = ingredientAmount or 1,
       })
     end
 

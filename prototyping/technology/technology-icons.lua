@@ -1,13 +1,16 @@
 
 if not LSlib.technology then require "technology" else
 
-  function LSlib.technology.changeIcon(technologyName, newIconFile, newIconSize)
-    if not data.raw["technology"] then return end
-    if not data.raw["technology"][technologyName] then return end
+  function LSlib.technology.getIcons(technologyName, layerScale, layerShift, layerTint)
+    return LSlib.item.getIcons("technology", technologyName, layerScale, layerShift, layerTint)
+  end
 
-    data.raw["technology"][technologyName].icon = newIconFile
-    data.raw["technology"][technologyName].icon_size = newIconSize
-    data.raw["technology"][technologyName].icons = nil
+  function LSlib.technology.changeIcon(technologyName, newIconFile, newIconSize)
+    LSlib.item.changeIcon("technology", technologyName, newIconFile, newIconSize)
+  end
+
+  function LSlib.technology.changeIcons(technologyName, newIcons, newIconSize)
+    LSlib.item.changeIcons("technology", technologyName, newIcons, newIconSize)
   end
 
 end

@@ -1,6 +1,13 @@
 
 if not LSlib.item then require "item" else
 
+  function LSlib.item.getLocalisedName(itemType, itemName)
+    if not data.raw[itemType] then return end
+    if not data.raw[itemType][itemName] then return end
+
+    return util.table.deepcopy(data.raw[itemType][itemName].localised_name)
+  end
+
   function LSlib.item.setLocalisedName(itemType, itemName, localeString)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
@@ -17,6 +24,14 @@ if not LSlib.item then require "item" else
     data.raw[itemType][itemName].subgroup = subgroup
   end
 
+
+
+  function LSlib.item.getOrderstring(itemType, itemName)
+    if not data.raw[itemType] then return end
+    if not data.raw[itemType][itemName] then return end
+
+    return data.raw[itemType][itemName].order
+  end
 
 
   function LSlib.item.setOrderstring(itemType, itemName, orderstring)
