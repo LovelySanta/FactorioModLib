@@ -6,4 +6,6 @@ if LSlib then
   require "recipe/recipe"
   require "technology/technology"
 
+  require "styles/styles"
+
 end
