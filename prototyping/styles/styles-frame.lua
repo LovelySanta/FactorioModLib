@@ -11,7 +11,6 @@ if not LSlib.styles then require "styles" else
     end
 
     local defaultFrameStyle = util.table.deepcopy(guiStyle["frame"])
-
     -- https://github.com/wube/factorio-data/blob/master/core/prototypes/style.lua#L4187
     local customFrameStyle =
     {
@@ -23,6 +22,7 @@ if not LSlib.styles then require "styles" else
       title_bottom_padding  = customFrameSpecifications.title_bottom_padding  or defaultFrameStyle.title_bottom_padding ,
       title_left_padding    = customFrameSpecifications.title_left_padding    or defaultFrameStyle.title_left_padding   ,
       title_right_padding   = customFrameSpecifications.title_right_padding   or defaultFrameStyle.title_right_padding  ,
+      padding               = customFrameSpecifications.padding               or defaultFrameStyle.padding              ,
       top_padding           = customFrameSpecifications.top_padding           or defaultFrameStyle.top_padding          ,
       bottom_padding        = customFrameSpecifications.bottom_padding        or defaultFrameStyle.bottom_padding       ,
       left_padding          = customFrameSpecifications.left_padding          or defaultFrameStyle.left_padding         ,

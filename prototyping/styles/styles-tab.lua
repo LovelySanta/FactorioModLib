@@ -8,10 +8,21 @@ if not LSlib.styles then require "styles" else
     tabButtonSpecifications.createSelectedStyle = customTabSpecifications.createSelectedStyle or true
     LSlib.styles.addButtonStyle(tabButtonSpecifications)
 
-    -- buttonFrame
-    local tabButtonFlowSpecifications          = customTabSpecifications.buttonFrame or {}
+    -- buttonFlow
+    local tabButtonFlowSpecifications          = customTabSpecifications.buttonFlow or {}
     tabButtonFlowSpecifications.name           = (customTabSpecifications.name or "unknown") .. "_buttonFlow"
     LSlib.styles.addFlowStyle(tabButtonFlowSpecifications)
+
+    -- innerFrame
+    local tabInsideFrameSpecification          = customTabSpecifications.tabInsideFrame or {}
+    tabInsideFrameSpecification.name           = (customTabSpecifications.name or "unknown") .. "_insideDeepFrame"
+    LSlib.styles.addFrameStyle(tabInsideFrameSpecification)
+
+    -- contentFrame
+    local tabContentFrameSpecification         = customTabSpecifications.contentFrame or {}
+    tabContentFrameSpecification.name          = (customTabSpecifications.name or "unknown") .. "_contentFrame"
+    LSlib.styles.addFrameStyle(tabContentFrameSpecification)
+
   end
 
   function LSlib.styles.getVanillaTabStyleSpecification()
@@ -23,7 +34,9 @@ if not LSlib.styles then require "styles" else
       name                = "LSlib_default_tab", -- base name for the tab styles
       createSelectedStyle = true               , -- create seperate style for selected button
       button              = {}                 , -- tab button
-      buttonFrame         = {}
+      buttonFlow          = {}                 , -- tab flow for the buttons
+      tabInsideFrame      = {}                 , -- tab outer frame behind the buttons
+      contentFrame        = {}                 , -- tab inner frame below the buttons
     }
 
     -- Button ------------------------------------------------------------------
@@ -72,18 +85,43 @@ if not LSlib.styles then require "styles" else
 
     -- Button frame ------------------------------------------------------------
     ----------------------------------------------------------------------------
-    local tabButtonFrame = defaultStyles["tabbed_pane"] -- vanilla style
-    local tabButtonFrameStyleSpecification = tabStyleSpecification.buttonFrame
+    local tabButtonFlow = defaultStyles["tabbed_pane"] -- vanilla style
+    local tabButtonFlowStyleSpecification = tabStyleSpecification.buttonFlow
 
-    tabButtonFrameStyleSpecification.direction          = "horizontal"
+    tabButtonFlowStyleSpecification.direction          = "horizontal"
 
-    tabButtonFrameStyleSpecification.top_padding        = tabButtonFrame.tab_container.top_padding
-    tabButtonFrameStyleSpecification.bottom_padding     = tabButtonFrame.tab_container.bottom_padding
-    tabButtonFrameStyleSpecification.left_padding       = tabButtonFrame.tab_container.left_padding
-    tabButtonFrameStyleSpecification.right_padding      = tabButtonFrame.tab_container.right_padding
+    tabButtonFlowStyleSpecification.top_padding        = tabButtonFlow.tab_container.top_padding
+    tabButtonFlowStyleSpecification.bottom_padding     = tabButtonFlow.tab_container.bottom_padding
+    tabButtonFlowStyleSpecification.left_padding       = tabButtonFlow.tab_container.left_padding
+    tabButtonFlowStyleSpecification.right_padding      = tabButtonFlow.tab_container.right_padding
 
-    tabButtonFrameStyleSpecification.horizontal_spacing = tabButtonFrame.tab_container.horizontal_spacing or tabButtonFrame.horizontal_spacing
-    tabButtonFrameStyleSpecification.vertical_spacing   = tabButtonFrame.tab_container.vertical_spacing   or tabButtonFrame.vertical_spacing
+    tabButtonFlowStyleSpecification.horizontal_spacing = tabButtonFlow.tab_container.horizontal_spacing or tabButtonFlow.horizontal_spacing
+    tabButtonFlowStyleSpecification.vertical_spacing   = tabButtonFlow.tab_container.vertical_spacing   or tabButtonFlow.vertical_spacing
+
+    -- tab inner deep frame (the root background of the tab) -------------------
+    ----------------------------------------------------------------------------
+    local tabInsideDeepFrame1 = defaultStyles["inside_deep_frame_for_tabs"    ]       -- vanilla style
+    local tabInsideDeepFrame2 = defaultStyles[tabInsideDeepFrame1.parent or ""] or {} -- vanilla style
+    local tabInsideDeepFrameStyleSpecification = tabStyleSpecification.tabInsideFrame
+
+    tabInsideDeepFrameStyleSpecification.top_padding         = tabInsideDeepFrame1.top_padding         or tabInsideDeepFrame2.top_padding
+    tabInsideDeepFrameStyleSpecification.padding             = tabInsideDeepFrame1.padding             or tabInsideDeepFrame2.padding
+    tabInsideDeepFrameStyleSpecification.graphical_set       = tabInsideDeepFrame1.graphical_set       or tabInsideDeepFrame2.graphical_set
+    tabInsideDeepFrameStyleSpecification.vertical_flow_style = tabInsideDeepFrame1.vertical_flow_style or tabInsideDeepFrame2.vertical_flow_style
+
+    -- tab inner upper frame (the root background of the tab) -------------------
+    ----------------------------------------------------------------------------
+    local tabInsideUpperFrame = defaultStyles["tabbed_pane"] -- vanilla style
+    local tabContentFrameStyleSpecification = tabStyleSpecification.contentFrame
+
+    tabContentFrameStyleSpecification.top_padding      = tabInsideUpperFrame.tab_content_frame.top_padding
+    tabContentFrameStyleSpecification.bottom_padding   = tabInsideUpperFrame.tab_content_frame.bottom_padding
+    tabContentFrameStyleSpecification.left_padding     = tabInsideUpperFrame.tab_content_frame.left_padding
+    tabContentFrameStyleSpecification.right_padding    = tabInsideUpperFrame.tab_content_frame.right_padding
+    tabContentFrameStyleSpecification.padding          = tabInsideUpperFrame.padding
+
+    tabContentFrameStyleSpecification.vertical_spacing = tabInsideUpperFrame.graphical_set
+    tabContentFrameStyleSpecification.graphical_set    = tabInsideUpperFrame.tab_content_frame.graphical_set
 
     -- return the vanillaTabStyleSpecification
     return tabStyleSpecification

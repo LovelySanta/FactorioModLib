@@ -6,10 +6,15 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   function LSlib.gui.layout.addTabs(layoutTable, parentPath, tabName, tabPages, tabOptions)
 
     -- frame for the tab
-    local tabFrame = LSlib.gui.layout.addFrame(layoutTable, parentPath, tabName, "vertical")
+    local tabFrame = LSlib.gui.layout.addFrame(layoutTable, parentPath, tabName, "vertical", {
+      style = tabOptions.tabInsideFrameStyle or "inside_deep_frame_for_tabs",
+    })
+    local tabFrame = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."-flow", "vertical", {
+      style = "packed_vertical_flow",
+    })
 
     -- tab button flow
-    local tabButtonFlow  = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."buttons", "horizontal", {
+    local tabButtonFlow  = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."-buttons", "horizontal", {
       style = tabOptions.buttonFlowStyle,
     })
     -- adding tab buttons to the tab button flow
@@ -24,8 +29,11 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     end
 
     -- tab content flow
-    local tabContentFlow = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."content", "vertical"  )
-
+    local tabContentFrame = LSlib.gui.layout.addFrame(layoutTable, tabFrame, tabName.."-content", "vertical", {
+      style = tabOptions.tabContentFrameStyle,
+    })
+    -- TODO : add horizontal flow inside the frame
+    -- TODO : add vertical flow inside horizontal flow
     return tabContentFlow
   end
 
