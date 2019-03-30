@@ -11,10 +11,10 @@ if not LSlib.item then require "item" else
           ["icon"     ] = iconLayer.icon,
           ["icon_size"] = iconLayer.icon_size or prototypeIconSize, -- prototypeIconSize if not icon_size specified in layer
           ["tint"     ] = (iconLayer.tint or layerTint) and {
-            r = (iconLayer.tint and (iconLayer.tint.r or iconLayer.tint[1]) or 1) * (layerTint and (layerTint.r or layerTint[1]) or 1),
-            g = (iconLayer.tint and (iconLayer.tint.g or iconLayer.tint[2]) or 1) * (layerTint and (layerTint.g or layerTint[2]) or 1),
-            b = (iconLayer.tint and (iconLayer.tint.b or iconLayer.tint[3]) or 1) * (layerTint and (layerTint.b or layerTint[3]) or 1),
-            a = (iconLayer.tint and (iconLayer.tint.a or iconLayer.tint[4]) or 0) * (layerTint and (layerTint.a or layerTint[4]) or 0),
+            r = (iconLayer.tint and (iconLayer.tint.r or iconLayer.tint[1]) or 1) * (layerTint and (layerTint.r or layerTint[1]) or 0),
+            g = (iconLayer.tint and (iconLayer.tint.g or iconLayer.tint[2]) or 1) * (layerTint and (layerTint.g or layerTint[2]) or 0),
+            b = (iconLayer.tint and (iconLayer.tint.b or iconLayer.tint[3]) or 1) * (layerTint and (layerTint.b or layerTint[3]) or 0),
+            a = (iconLayer.tint and (iconLayer.tint.a or iconLayer.tint[4]) or 1) * (layerTint and (layerTint.a or layerTint[4]) or 0),
           } or nil,
           ["scale"    ] = (iconLayer.scale or 1) * (layerScale or 1),
           ["shift"    ] = {
