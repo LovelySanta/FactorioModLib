@@ -4,6 +4,7 @@ if LSlib then
 
     require "entity-properties"
     require "entity-icons"
+    require "entity-sprites"
 
   end
 end
