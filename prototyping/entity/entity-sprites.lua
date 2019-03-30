@@ -32,19 +32,19 @@ if not LSlib.entity then require "entity" else
 
 
 
-  function LSlib.entity.addTintToSpriteVariation(spriteVariaton, tintToAdd)
+  function LSlib.entity.addTintToSpriteVariation(spriteVariation, tintToAdd)
     -- https://wiki.factorio.com/Types/SpriteVariations
 
-    if spriteVariaton.layers or spriteVariaton.filename then
-      spriteVariaton = LSlib.entity.addTintToSprite(spriteVariaton, tintToAdd)
+    if spriteVariation.layers or spriteVariation.filename then
+      spriteVariation = LSlib.entity.addTintToSprite(spriteVariation, tintToAdd)
 
     else
-      for variationIndex, variation in pairs(spriteVariaton) do
-        spriteVariaton[variationIndex] = LSlib.entity.addTintToSprite(variation, tintToAdd)
+      for variationIndex, variation in pairs(spriteVariation) do
+        spriteVariation[variationIndex] = LSlib.entity.addTintToSprite(variation, tintToAdd)
       end
     end
 
-    return spriteVariaton
+    return spriteVariation
   end
 
 
