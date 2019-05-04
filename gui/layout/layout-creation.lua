@@ -18,9 +18,9 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     }
   end
 
-  function LSlib.gui.layout.addElement(layoutTable, parentPath, childProperties)
+  function LSlib.gui.layout.getElement(layoutTable, elementPath)
     -- obtain the correct parent element out of the layoutTable
-    parentPath = LSlib.utils.string.split(parentPath, "/")
+    parentPath = LSlib.utils.string.split(elementPath, "/")
     local parent = layoutTable
     local nextParentFound = false
     for parentIndex = 2, #parentPath, 1 do
@@ -32,6 +32,13 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       end
       nextParentFound = false
     end
+
+    return parent -- this is the desired element now
+  end
+
+  function LSlib.gui.layout.addElement(layoutTable, parentPath, childProperties)
+    -- obtain the correct parent element out of the layoutTable
+    parent = LSlib.gui.layout.getElement(layoutTable, parentPath)
 
     table.insert(parent.children, util.table.deepcopy(childProperties))
     local childIndex = #parent.children

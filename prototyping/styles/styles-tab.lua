@@ -123,6 +123,8 @@ if not LSlib.styles then require "styles" else
     tabContentFrameStyleSpecification.vertical_spacing = tabInsideUpperFrame.graphical_set
     tabContentFrameStyleSpecification.graphical_set    = tabInsideUpperFrame.tab_content_frame.graphical_set
 
+    tabContentFrameStyleSpecification.horizontally_stretchable = "on"
+
     -- return the vanillaTabStyleSpecification
     return tabStyleSpecification
 

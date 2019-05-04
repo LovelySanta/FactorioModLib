@@ -7,13 +7,26 @@ if not (LSlib and LSlib.gui) then require "gui" else
     --log(serpent.block(layoutTable))
     local root = game.players[playerIndex].gui[layoutTable.name]
     LSlib.gui.addChildren(root, layoutTable.children)
+
+    -- return reference to first child added to the root
+    return root[LSlib.gui.getRootElementName(layoutTable)]
+  end
+
+  function LSlib.gui.destroy(playerIndex, layoutTable)
+
+    --log(serpent.block(layoutTable))
+    local root = game.players[playerIndex].gui[layoutTable.name]
+
+    for childIndex, child in pairs(layoutTable.children or {}) do
+      root[child.name].destroy()
+    end
+
     return nil
   end
 
   function LSlib.gui.addChildren(parentElement, childrenLayoutTable)
 
-    for childIndex, child in pairs(childrenLayoutTable) do
-      log(serpent.block(child.name))
+    for childIndex, child in pairs(childrenLayoutTable or {}) do
       local childElementTable = {} -- create argument list for this element
       for childElementIndex, childElement in pairs(child) do
         if elementIndex ~= "children" then
@@ -21,10 +34,18 @@ if not (LSlib and LSlib.gui) then require "gui" else
         end
       end
 
-      log(serpent.block(childElementTable))
+      if parentElement[childElementTable.name] then
+        game.players[parentElement.player_index].print(
+          string.format("LSlib error: LuaGuiElement %q already has a child named %q.",
+            parentElement.name, childElementTable.name
+          )
+        )
+        return -- not creating child and children of this child
+      end
+
       local childElement = parentElement.add(childElementTable) -- add child
 
-      if not LSlib.utils.table.isEmpty(child.children) then
+      if childElement and (not LSlib.utils.table.isEmpty(child.children)) then
         -- recursive call for children of child element
         LSlib.gui.addChildren(childElement, child.children)
       end

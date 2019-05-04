@@ -45,4 +45,19 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       mouse_button_filter    = buttonOptions.mouse_button_filter   ,
     })
   end
+
+  function LSlib.gui.layout.textfield(layoutTable, parentPath, textfieldName, textfieldOptions)
+    textfieldOptions = textfieldOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "textfield"                            ,
+      name                   = textfieldName                          ,
+      -- optional options specified in table (or nil)
+      text                   = textfieldOptions.text                  ,
+      tooltip                = textfieldOptions.tooltip               ,
+      style                  = textfieldOptions.style                 ,
+      enabled                = textfieldOptions.enabled               ,
+      ignored_by_interaction = textfieldOptions.ignored_by_interaction,
+    })
+  end
 end
