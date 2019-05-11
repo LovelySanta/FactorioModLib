@@ -46,7 +46,31 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     })
   end
 
-  function LSlib.gui.layout.textfield(layoutTable, parentPath, textfieldName, textfieldOptions)
+  function LSlib.gui.layout.addSpriteButton(layoutTable, parentPath, spriteButtonName, spriteButtonOptions)
+    buttonOptions = buttonOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                           = "sprite-button"                                   ,
+      name                           = spriteButtonName                                  ,
+      -- optional options specified in table (or nil)
+      caption                        = spriteButtonOptions.caption                       ,
+      tooltip                        = spriteButtonOptions.tooltip                       ,
+      style                          = spriteButtonOptions.style                         ,
+
+      sprite                         = spriteButtonOptions.sprite                        ,
+      hovered_sprite                 = spriteButtonOptions.hovered_sprite                ,
+      clicked_sprite                 = spriteButtonOptions.clicked_sprite                ,
+
+      number                         = spriteButtonOptions.number                        ,
+      show_percent_for_small_numbers = spriteButtonOptions.show_percent_for_small_numbers,
+
+      enabled                        = spriteButtonOptions.enabled                       ,
+      ignored_by_interaction         = spriteButtonOptions.ignored_by_interaction        ,
+      mouse_button_filter            = spriteButtonOptions.mouse_button_filter           ,
+    })
+  end
+
+  function LSlib.gui.layout.addTextfield(layoutTable, parentPath, textfieldName, textfieldOptions)
     textfieldOptions = textfieldOptions or {}
 
     return LSlib.gui.layout.addElement(layoutTable, parentPath, {
@@ -60,4 +84,20 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       ignored_by_interaction = textfieldOptions.ignored_by_interaction,
     })
   end
+
+  function LSlib.gui.layout.addListbox(layoutTable, parentPath, listboxName, listboxOptions)
+    listboxOptions = listboxOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "list-box"                           ,
+      name                   = listboxName                          ,
+      -- optional options specified in table (or nil)
+      items                  = listboxOptions.items                 ,
+      selected_index         = listboxOptions.selected_index        ,
+      style                  = listboxOptions.style                 ,
+      enabled                = listboxOptions.enabled               ,
+      ignored_by_interaction = listboxOptions.ignored_by_interaction,
+    })
+  end
+
 end

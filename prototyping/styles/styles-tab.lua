@@ -105,7 +105,11 @@ if not LSlib.styles then require "styles" else
     local tabInsideDeepFrameStyleSpecification = tabStyleSpecification.tabInsideFrame
 
     tabInsideDeepFrameStyleSpecification.top_padding         = tabInsideDeepFrame1.top_padding         or tabInsideDeepFrame2.top_padding
+    tabInsideDeepFrameStyleSpecification.bottom_padding      = tabInsideDeepFrame1.bottom_padding      or tabInsideDeepFrame2.bottom_padding
+    tabInsideDeepFrameStyleSpecification.left_padding        = tabInsideDeepFrame1.left_padding        or tabInsideDeepFrame2.left_padding
+    tabInsideDeepFrameStyleSpecification.right_padding       = tabInsideDeepFrame1.right_padding       or tabInsideDeepFrame2.right_padding
     tabInsideDeepFrameStyleSpecification.padding             = tabInsideDeepFrame1.padding             or tabInsideDeepFrame2.padding
+
     tabInsideDeepFrameStyleSpecification.graphical_set       = tabInsideDeepFrame1.graphical_set       or tabInsideDeepFrame2.graphical_set
     tabInsideDeepFrameStyleSpecification.vertical_flow_style = tabInsideDeepFrame1.vertical_flow_style or tabInsideDeepFrame2.vertical_flow_style
 

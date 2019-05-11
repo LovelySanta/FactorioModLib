@@ -18,10 +18,13 @@ if not LSlib.styles then require "styles" else
     {
       type               = customFlowSpecifications.type .. "_style"                                         ,
       name               = customFlowSpecifications.name                                                     ,
-      top_padding        = customFlowSpecifications.top_padding        or defaultFlowStyle.top_padding       ,
-      bottom_padding     = customFlowSpecifications.bottom_padding     or defaultFlowStyle.bottom_padding    ,
-      left_padding       = customFlowSpecifications.left_padding       or defaultFlowStyle.left_padding      ,
-      right_padding      = customFlowSpecifications.right_padding      or defaultFlowStyle.right_padding     ,
+
+      top_padding        = customFlowSpecifications.top_padding        or ((not customFlowSpecifications.padding) and defaultFlowStyle.top_padding   ),
+      bottom_padding     = customFlowSpecifications.bottom_padding     or ((not customFlowSpecifications.padding) and defaultFlowStyle.bottom_padding),
+      left_padding       = customFlowSpecifications.left_padding       or ((not customFlowSpecifications.padding) and defaultFlowStyle.left_padding  ),
+      right_padding      = customFlowSpecifications.right_padding      or ((not customFlowSpecifications.padding) and defaultFlowStyle.right_padding ),
+      padding            = customFlowSpecifications.padding            or defaultFlowStyle.padding           ,
+
       horizontal_spacing = customFlowSpecifications.horizontal_spacing or defaultFlowStyle.horizontal_spacing,
       vertical_spacing   = customFlowSpecifications.vertical_spacing   or defaultFlowStyle.vertical_spacing  ,
     }
