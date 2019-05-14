@@ -2,6 +2,7 @@ require "util"
 
 if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   if not (LSlib.utils and LSlib.utils.string) then require "utils-string" end
+  require "layout-properties"
 
   function LSlib.gui.layout.create(rootElement)
     if not(rootElement == "top"    or
@@ -12,28 +13,10 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     end
 
     return {
-      ["path"    ] = "root",
+      ["path"    ] = string.format("root(%s)", rootElement),
       ["name"    ] = rootElement,
       ["children"] = {nil}      ,
     }
-  end
-
-  function LSlib.gui.layout.getElement(layoutTable, elementPath)
-    -- obtain the correct parent element out of the layoutTable
-    parentPath = LSlib.utils.string.split(elementPath, "/")
-    local parent = layoutTable
-    local nextParentFound = false
-    for parentIndex = 2, #parentPath, 1 do
-      for childIndex, child in pairs(parent["children"]) do
-        if (not nextParentFound) and child.name == parentPath[parentIndex] then
-          parent = parent["children"][childIndex]
-          nextParentFound = true
-        end
-      end
-      nextParentFound = false
-    end
-
-    return parent -- this is the desired element now
   end
 
   function LSlib.gui.layout.addElement(layoutTable, parentPath, childProperties)

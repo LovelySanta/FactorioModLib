@@ -9,9 +9,6 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     local tabFrame = LSlib.gui.layout.addFrame(layoutTable, parentPath, tabName, "vertical", {
       style = tabOptions.tabInsideFrameStyle or "inside_deep_frame_for_tabs",
     })
-    --local tabFrame = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."-flow", "vertical", {
-    --  style = "packed_vertical_flow",
-    --})
 
     -- tab button flow
     local tabButtonFlow  = LSlib.gui.layout.addFlow(layoutTable, tabFrame, tabName.."-buttons", "horizontal", {
@@ -26,10 +23,14 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     for _,tabPage in pairs(tabPages or {}) do
       LSlib.gui.layout.addButton(layoutTable, tabButtonFlow , tabName..tabPage.name, {
         caption = tabPage.caption,
-        style   = tabPage.style
+        style   = ((tabPage.selected == true and tabOptions.buttonSelectedStyle) or tabOptions.buttonStyle),
       })
       if not (tabPage.enabled == false) then
-        LSlib.gui.layout.addFlow(layoutTable, tabContentFrame, tabName..tabPage.name, "vertical")
+        local tabContent = LSlib.gui.layout.addFlow(layoutTable, tabContentFrame, tabName..tabPage.name, "vertical")
+
+        if not tabPage.selected == true then -- not visible
+          LSlib.gui.layout.getElement(layoutTable, tabContent).visible = false
+        end
       end
     end
 

@@ -44,6 +44,9 @@ if not (LSlib and LSlib.gui) then require "gui" else
       end
 
       local childElement = parentElement.add(childElementTable) -- add child
+      if childElementTable.visible == false then
+        childElement.visible = false
+      end
 
       if childElement and (not LSlib.utils.table.isEmpty(child.children)) then
         -- recursive call for children of child element

@@ -6,6 +6,7 @@ if LSlib then
 
     require "gui-creation"
     require "gui-properties"
+    require "gui-elements"
 
   end
 else
