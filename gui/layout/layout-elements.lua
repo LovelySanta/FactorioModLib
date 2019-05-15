@@ -47,7 +47,7 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   end
 
   function LSlib.gui.layout.addSpriteButton(layoutTable, parentPath, spriteButtonName, spriteButtonOptions)
-    buttonOptions = buttonOptions or {}
+    spriteButtonOptions = spriteButtonOptions or {}
 
     return LSlib.gui.layout.addElement(layoutTable, parentPath, {
       type                           = "sprite-button"                                   ,
@@ -67,6 +67,21 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       enabled                        = spriteButtonOptions.enabled                       ,
       ignored_by_interaction         = spriteButtonOptions.ignored_by_interaction        ,
       mouse_button_filter            = spriteButtonOptions.mouse_button_filter           ,
+    })
+  end
+
+  function LSlib.gui.layout.addLabel(layoutTable, parentPath, labelName, labelOptions)
+    labelOptions = labelOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "label"                            ,
+      name                   = labelName                          ,
+      -- optional options specified in table (or nil)
+      caption                = labelOptions.caption               ,
+      tooltip                = labelOptions.tooltip               ,
+      style                  = labelOptions.style                 ,
+      enabled                = labelOptions.enabled               ,
+      ignored_by_interaction = labelOptions.ignored_by_interaction,
     })
   end
 
@@ -97,6 +112,23 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       style                  = listboxOptions.style                 ,
       enabled                = listboxOptions.enabled               ,
       ignored_by_interaction = listboxOptions.ignored_by_interaction,
+    })
+  end
+
+  function LSlib.gui.layout.addTable(layoutTable, parentPath, tableName, numberOfColumns, tableOptions)
+    listboxOptions = listboxOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                               = "table"                                        ,
+      name                               = tableName                                      ,
+      column_count                       = numberOfColumns                                ,
+      -- optional options specified in table (or nil)
+      draw_vertical_lines                = tableOptions.draw_vertical_lines               ,
+      draw_horizontal_lines              = tableOptions.draw_horizontal_lines             ,
+      draw_horizontal_line_after_headers = tableOptions.draw_horizontal_line_after_headers,
+      style                              = tableOptions.style                             ,
+      enabled                            = tableOptions.enabled                           ,
+      ignored_by_interaction             = tableOptions.ignored_by_interaction            ,
     })
   end
 
