@@ -17,9 +17,10 @@ if not (LSlib and LSlib.gui) then require "gui" else
     --log(serpent.block(layoutTable))
     local root = game.players[playerIndex].gui[layoutTable.name]
 
-    for childIndex, child in pairs(layoutTable.children or {}) do
-      root[child.name].destroy()
-    end
+      for childIndex, child in pairs(layoutTable.children or {}) do
+        local child = root[child.name]
+        if child then child.destroy() end
+      end
 
     return nil
   end
