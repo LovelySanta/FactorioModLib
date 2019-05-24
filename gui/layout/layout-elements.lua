@@ -161,4 +161,22 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     })
   end
 
+  function LSlib.gui.layout.addSlider(layoutTable, parentPath, sliderName, sliderOptions)
+    sliderOptions = sliderOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "slider"                            ,
+      name                   = sliderName                          ,
+
+      -- optional options specified in table (or nil)
+      minimum_value          = sliderOptions.minimum_value         ,
+      maximum_value          = sliderOptions.maximum_value         ,
+      value                  = sliderOptions.value                 ,
+      style                  = sliderOptions.style                 ,
+
+      enabled                = sliderOptions.enabled               ,
+      ignored_by_interaction = sliderOptions.ignored_by_interaction,
+    })
+  end
+
 end

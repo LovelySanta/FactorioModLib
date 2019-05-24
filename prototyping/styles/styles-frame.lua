@@ -10,14 +10,19 @@ if not LSlib.styles then require "styles" else
       return -- already exist
     end
 
-    local defaultFrameStyle = util.table.deepcopy(guiStyle["frame"])
+    local defaultFrameStyle = customFrameSpecifications.parent and {} or util.table.deepcopy(guiStyle["frame"])
     -- https://github.com/wube/factorio-data/blob/master/core/prototypes/style.lua#L4187
     local customFrameStyle =
     {
       type                     = "frame_style"                                                                                   ,
       name                     = customFrameSpecifications.name                                                                  ,
+      parent                   = customFrameSpecifications.parent                                                                ,
+
       font                     = customFrameSpecifications.font                     or defaultFrameStyle.font                    ,
       font_color               = customFrameSpecifications.font_color               or defaultFrameStyle.font_color              ,
+
+      left_margin              = customFrameSpecifications.left_margin              or defaultFrameStyle.left_margin             ,
+      right_margin             = customFrameSpecifications.right_margin             or defaultFrameStyle.right_margin            ,
 
       padding                  = customFrameSpecifications.padding                  or defaultFrameStyle.padding                                                     ,
       top_padding              = customFrameSpecifications.top_padding              or ((not customFrameSpecifications.padding) and defaultFrameStyle.top_padding   ),
@@ -43,6 +48,24 @@ if not LSlib.styles then require "styles" else
 
     -- add new frame to data
     guiStyle[customFrameSpecifications.name] = util.table.deepcopy(customFrameStyle)
+  end
+
+  function LSlib.styles.addFillerFrameStyle()
+    local guiStyles = data.raw["gui-style"]["default"]
+    local fillerStyle = guiStyles["draggable_space"]
+
+    LSlib.styles.addFrameStyle({
+      name   = "LSlib_default_filler_frame",
+      parent = "frame"                     ,
+
+      left_margin  = fillerStyle.left_margin ,
+      right_margin = fillerStyle.right_margin,
+
+      padding = 0,
+      horizontally_stretchable = "on",
+
+      graphical_set = fillerStyle.graphical_set,
+    })
   end
 
 end

@@ -45,7 +45,8 @@ if not (LSlib and LSlib.gui) then require "gui" else
       end
 
       local childElement = parentElement.add(childElementTable) -- add child
-      if childElementTable.visible == false then
+      if childElementTable.visible == false or
+         childElementTable.hidden  == true  then
         childElement.visible = false
       end
 
