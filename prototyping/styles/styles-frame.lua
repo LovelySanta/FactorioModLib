@@ -14,58 +14,55 @@ if not LSlib.styles then require "styles" else
     -- https://github.com/wube/factorio-data/blob/master/core/prototypes/style.lua#L4187
     local customFrameStyle =
     {
-      type                     = "frame_style"                                                                                   ,
-      name                     = customFrameSpecifications.name                                                                  ,
-      parent                   = customFrameSpecifications.parent                                                                ,
+      type                     = "frame_style"                                                                                                                                     ,
+      name                     = customFrameSpecifications.name                                                                                                                    ,
+      parent                   = customFrameSpecifications.parent                                                                                                                  ,
 
-      font                     = customFrameSpecifications.font                     or defaultFrameStyle.font                    ,
-      font_color               = customFrameSpecifications.font_color               or defaultFrameStyle.font_color              ,
+      font                     = customFrameSpecifications.font                     or defaultFrameStyle.font                                                                      ,
+      font_color               = customFrameSpecifications.font_color               or defaultFrameStyle.font_color                                                                ,
 
-      left_margin              = customFrameSpecifications.left_margin              or defaultFrameStyle.left_margin             ,
-      right_margin             = customFrameSpecifications.right_margin             or defaultFrameStyle.right_margin            ,
+      size                     = customFrameSpecifications.size                     or defaultFrameStyle.size                                                                      ,
+      minimal_size             = customFrameSpecifications.minimal_size             or ((not customFrameSpecifications.size)               and defaultFrameStyle.minimal_size     ),
+      maximal_size             = customFrameSpecifications.maximal_size             or ((not customFrameSpecifications.size)               and defaultFrameStyle.maximal_size     ),
 
-      padding                  = customFrameSpecifications.padding                  or defaultFrameStyle.padding                                                     ,
-      top_padding              = customFrameSpecifications.top_padding              or ((not customFrameSpecifications.padding) and defaultFrameStyle.top_padding   ),
-      bottom_padding           = customFrameSpecifications.bottom_padding           or ((not customFrameSpecifications.padding) and defaultFrameStyle.bottom_padding),
-      left_padding             = customFrameSpecifications.left_padding             or ((not customFrameSpecifications.padding) and defaultFrameStyle.left_padding  ),
-      right_padding            = customFrameSpecifications.right_padding            or ((not customFrameSpecifications.padding) and defaultFrameStyle.right_padding ),
+      width                    = customFrameSpecifications.width                    or defaultFrameStyle.width                                                                     ,
+      minimal_width            = customFrameSpecifications.minimal_width            or ((not customFrameSpecifications.width)              and defaultFrameStyle.minimal_width    ),
+      maximal_width            = customFrameSpecifications.maximal_width            or ((not customFrameSpecifications.width)              and defaultFrameStyle.maximal_width    ),
 
-      graphical_set            = customFrameSpecifications.graphical_set            or defaultFrameStyle.graphical_set           ,
+      height                   = customFrameSpecifications.height                   or defaultFrameStyle.height                                                                    ,
+      minimal_height           = customFrameSpecifications.minimal_height           or ((not customFrameSpecifications.height)             and defaultFrameStyle.minimal_height   ),
+      maximal_height           = customFrameSpecifications.maximal_height           or ((not customFrameSpecifications.height)             and defaultFrameStyle.maximal_height   ),
 
-      flow_style               = customFrameSpecifications.flow_style               or defaultFrameStyle.flow_style              ,
-      horizontal_flow_style    = customFrameSpecifications.horizontal_flow_style    or defaultFrameStyle.horizontal_flow_style   ,
-      vertical_flow_style      = customFrameSpecifications.vertical_flow_style      or defaultFrameStyle.vertical_flow_style     ,
+      margin                   = customFrameSpecifications.margin                   or defaultFrameStyle.margin                                                                    ,
+      left_margin              = customFrameSpecifications.left_margin              or ((not customFrameSpecifications.margin)             and defaultFrameStyle.left_margin      ),
+      right_margin             = customFrameSpecifications.right_margin             or ((not customFrameSpecifications.margin)             and defaultFrameStyle.right_margin     ),
+      top_margin               = customFrameSpecifications.top_margin               or ((not customFrameSpecifications.margin)             and defaultFrameStyle.top_margin       ),
+      bottom_margin            = customFrameSpecifications.bottom_margin            or ((not customFrameSpecifications.margin)             and defaultFrameStyle.bottom_margin    ),
 
-      header_flow_style        = customFrameSpecifications.header_flow_style        or defaultFrameStyle.header_flow_style       ,
-      header_filler_style      = customFrameSpecifications.header_filler_style      or defaultFrameStyle.header_filler_style     ,
-      use_header_filler        = customFrameSpecifications.use_header_filler        or defaultFrameStyle.use_header_filler       ,
+      padding                  = customFrameSpecifications.padding                  or defaultFrameStyle.padding                                                                   ,
+      top_padding              = customFrameSpecifications.top_padding              or ((not customFrameSpecifications.padding)            and defaultFrameStyle.top_padding      ),
+      bottom_padding           = customFrameSpecifications.bottom_padding           or ((not customFrameSpecifications.padding)            and defaultFrameStyle.bottom_padding   ),
+      left_padding             = customFrameSpecifications.left_padding             or ((not customFrameSpecifications.padding)            and defaultFrameStyle.left_padding     ),
+      right_padding            = customFrameSpecifications.right_padding            or ((not customFrameSpecifications.padding)            and defaultFrameStyle.right_padding    ),
 
-      horizontally_stretchable = customFrameSpecifications.horizontally_stretchable or defaultFrameStyle.horizontally_stretchable,
-      vertically_stretchable   = customFrameSpecifications.vertically_stretchable   or defaultFrameStyle.vertically_stretchable  ,
+      graphical_set            = customFrameSpecifications.graphical_set            or defaultFrameStyle.graphical_set                                                             ,
 
-      border                   = customFrameSpecifications.border                   or defaultFrameStyle.border                  ,
+      flow_style               = customFrameSpecifications.flow_style               or defaultFrameStyle.flow_style                                                                ,
+      horizontal_flow_style    = customFrameSpecifications.horizontal_flow_style    or defaultFrameStyle.horizontal_flow_style                                                     ,
+      vertical_flow_style      = customFrameSpecifications.vertical_flow_style      or defaultFrameStyle.vertical_flow_style                                                       ,
+
+      header_flow_style        = customFrameSpecifications.header_flow_style        or defaultFrameStyle.header_flow_style                                                         ,
+      header_filler_style      = customFrameSpecifications.header_filler_style      or defaultFrameStyle.header_filler_style                                                       ,
+      use_header_filler        = customFrameSpecifications.use_header_filler        or (customFrameSpecifications.use_header_filler == nil and defaultFrameStyle.use_header_filler),
+
+      horizontally_stretchable = customFrameSpecifications.horizontally_stretchable or defaultFrameStyle.horizontally_stretchable                                                  ,
+      vertically_stretchable   = customFrameSpecifications.vertically_stretchable   or defaultFrameStyle.vertically_stretchable                                                    ,
+
+      border                   = customFrameSpecifications.border                   or defaultFrameStyle.border                                                                    ,
     }
 
     -- add new frame to data
     guiStyle[customFrameSpecifications.name] = util.table.deepcopy(customFrameStyle)
-  end
-
-  function LSlib.styles.addFillerFrameStyle()
-    local guiStyles = data.raw["gui-style"]["default"]
-    local fillerStyle = guiStyles["draggable_space"]
-
-    LSlib.styles.addFrameStyle({
-      name   = "LSlib_default_filler_frame",
-      parent = "frame"                     ,
-
-      left_margin  = fillerStyle.left_margin ,
-      right_margin = fillerStyle.right_margin,
-
-      padding = 0,
-      horizontally_stretchable = "on",
-
-      graphical_set = fillerStyle.graphical_set,
-    })
   end
 
 end

@@ -13,7 +13,7 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
 
       -- optional options specified in table (or nil)
       caption                = frameOptions.caption               ,
-      
+
       visible                = frameOptions.visible               ,
       style                  = frameOptions.style                 ,
       ignored_by_interaction = frameOptions.ignored_by_interaction,
@@ -187,6 +187,21 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       visible                = sliderOptions.visible               ,
       enabled                = sliderOptions.enabled               ,
       ignored_by_interaction = sliderOptions.ignored_by_interaction,
+    })
+  end
+
+  function LSlib.gui.layout.addEntityPreview(layoutTable, parentPath, entityPreviewName, entityPreviewOptions)
+    entityPreviewOptions = entityPreviewOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "entity-preview"                           ,
+      name                   = entityPreviewName                          ,
+
+      -- optional options specified in table (or nil)
+      style                  = entityPreviewOptions.style                 ,
+      visible                = entityPreviewOptions.visible               ,
+      enabled                = entityPreviewOptions.enabled               ,
+      ignored_by_interaction = entityPreviewOptions.ignored_by_interaction,
     })
   end
 

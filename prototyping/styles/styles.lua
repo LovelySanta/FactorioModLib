@@ -5,7 +5,8 @@ if LSlib then
     require "styles-frame"
     require "styles-flow"
     require "styles-button"
-    
+
+    require "styles-filler"
     require "styles-tab"
 
   end
