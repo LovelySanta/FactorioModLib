@@ -4,6 +4,8 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   if not (LSlib.utils and LSlib.utils.string) then require "utils-table" end
 
   function LSlib.gui.layout.getElement(layoutTable, elementPath)
+    if elementPath == nil then error("elementPath can't be nil.") end
+    
     -- obtain the correct parent element out of the layoutTable
     local parentPath = LSlib.utils.string.split(elementPath, "/")
     local parent = layoutTable
