@@ -43,14 +43,14 @@ if LSlib and LSlib.utils then
       -- Function will return the string of the direction
       local directionToString =
       {
-        [defines.direction.north    ] = "south"    ,
-        [defines.direction.northeast] = "southwest",
-        [defines.direction.east     ] = "west"     ,
-        [defines.direction.southeast] = "northwest",
-        [defines.direction.south    ] = "north"    ,
-        [defines.direction.southwest] = "northeast",
-        [defines.direction.west     ] = "east"     ,
-        [defines.direction.northwest] = "southeast",
+        [defines.direction.north    ] = "north"    ,
+        [defines.direction.northeast] = "northeast",
+        [defines.direction.east     ] = "east"     ,
+        [defines.direction.southeast] = "southeast",
+        [defines.direction.south    ] = "south"    ,
+        [defines.direction.southwest] = "southwest",
+        [defines.direction.west     ] = "west"     ,
+        [defines.direction.northwest] = "northwest",
       }
 
       return directionToString[direction]
