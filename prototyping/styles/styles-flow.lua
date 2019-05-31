@@ -14,7 +14,7 @@ if not LSlib.styles then require "styles" else
     local defaultFlowStyle = util.table.deepcopy(guiStyle[customFlowSpecifications.type])
 
     -- https://github.com/wube/factorio-data/blob/master/core/prototypes/style.lua#L4187
-    local customFrameStyle =
+    local customFlowStyle =
     {
       type               = customFlowSpecifications.type .. "_style"                                                                                  ,
       name               = customFlowSpecifications.name                                                                                              ,
@@ -39,7 +39,7 @@ if not LSlib.styles then require "styles" else
     }
 
     -- add new frame to data
-    guiStyle[customFlowSpecifications.name] = util.table.deepcopy(customFrameStyle)
+    guiStyle[customFlowSpecifications.name] = util.table.deepcopy(customFlowStyle)
   end
 
 end

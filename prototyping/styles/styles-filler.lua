@@ -5,7 +5,7 @@ if not LSlib.styles then require "styles" else
     local guiStyles = data.raw["gui-style"]["default"]
     local fillerStyle = guiStyles["draggable_space"]
 
-    -- basic filler
+    -- basic filler ------------------------------------------------------------
     LSlib.styles.addFrameStyle{
       name   = "LSlib_default_filler",
       parent = "frame",
@@ -56,6 +56,15 @@ if not LSlib.styles then require "styles" else
 
 
     -- footer filler -----------------------------------------------------------
+    LSlib.styles.addFlowStyle{ -- header flow
+      name   = "LSlib_default_footer",
+      parent = "flow",
+
+      vertical_align = guiStyles["frame"].header_flow_style.vertical_align,
+      bottom_margin  = -2,
+      top_padding    = guiStyles["frame"].header_flow_style.bottom_padding,
+    }
+
     LSlib.styles.addFrameStyle{
       name   = "LSlib_default_footer_filler",
       parent = "LSlib_default_filler",

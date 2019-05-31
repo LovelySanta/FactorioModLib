@@ -24,6 +24,9 @@ if not LSlib.styles then require "styles" else
       vertical_align                 = customButtonSpecifications.vertical_align                 or defaultButtonStyle.vertical_align                ,
       icon_horizontal_align          = customButtonSpecifications.icon_horizontal_align          or defaultButtonStyle.icon_horizontal_align         ,
 
+      horizontally_stretchable       = customButtonSpecifications.horizontally_stretchable       or defaultButtonStyle.horizontally_stretchable      ,
+      vertically_stretchable         = customButtonSpecifications.vertically_stretchable         or defaultButtonStyle.vertically_stretchable        ,
+
       top_padding                    = customButtonSpecifications.top_padding                    or defaultButtonStyle.top_padding                   ,
       bottom_padding                 = customButtonSpecifications.bottom_padding                 or defaultButtonStyle.bottom_padding                ,
       left_padding                   = customButtonSpecifications.left_padding                   or defaultButtonStyle.left_padding                  ,

@@ -205,4 +205,21 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
     })
   end
 
+  function LSlib.gui.layout.addSprite(layoutTable, parentPath, spriteName, spriteOptions)
+    entityPreviewOptions = entityPreviewOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "sprite"                            ,
+      name                   = spriteName                          ,
+
+      -- optional options specified in table (or nil)
+      sprite                 = spriteOptions.sprite                ,
+
+      style                  = spriteOptions.style                 ,
+      visible                = spriteOptions.visible               ,
+      enabled                = spriteOptions.enabled               ,
+      ignored_by_interaction = spriteOptions.ignored_by_interaction,
+    })
+  end
+
 end
