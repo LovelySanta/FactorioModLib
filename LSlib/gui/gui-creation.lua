@@ -7,13 +7,27 @@ if not (LSlib and LSlib.gui) then require "gui" else
     --log(serpent.block(layoutTable))
     local root = game.players[playerIndex].gui[layoutTable.name]
     LSlib.gui.addChildren(root, layoutTable.children)
+
+    -- return reference to first child added to the root
+    return root[LSlib.gui.getRootElementName(layoutTable)]
+  end
+
+  function LSlib.gui.destroy(playerIndex, layoutTable)
+
+    --log(serpent.block(layoutTable))
+    local root = game.players[playerIndex].gui[layoutTable.name]
+
+      for childIndex, child in pairs(layoutTable.children or {}) do
+        local child = root[child.name]
+        if child then child.destroy() end
+      end
+
     return nil
   end
 
   function LSlib.gui.addChildren(parentElement, childrenLayoutTable)
 
-    for childIndex, child in pairs(childrenLayoutTable) do
-      log(serpent.block(child.name))
+    for childIndex, child in pairs(childrenLayoutTable or {}) do
       local childElementTable = {} -- create argument list for this element
       for childElementIndex, childElement in pairs(child) do
         if elementIndex ~= "children" then
@@ -21,10 +35,23 @@ if not (LSlib and LSlib.gui) then require "gui" else
         end
       end
 
-      log(serpent.block(childElementTable))
-      local childElement = parentElement.add(childElementTable) -- add child
+      if parentElement[childElementTable.name] then
+        game.players[parentElement.player_index].print(
+          string.format("LSlib error: LuaGuiElement %q already has a child named %q.",
+            parentElement.name, childElementTable.name
+          )
+        )
+        return -- not creating child and children of this child
+      end
 
-      if not LSlib.utils.table.isEmpty(child.children) then
+      local childElement = parentElement.add(childElementTable) -- add child
+      if childElementTable.visible == false or
+         childElementTable.hidden  == true  then
+        --game.print(string.format("hiding element %q", childElement.name))
+        childElement.visible = false
+      end
+
+      if childElement and (not LSlib.utils.table.isEmpty(child.children)) then
         -- recursive call for children of child element
         LSlib.gui.addChildren(childElement, child.children)
       end

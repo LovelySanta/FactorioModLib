@@ -3,3 +3,5 @@ Version: 0.1.0 - Pre-release
 Date: 18. 7. 2019
   Major Features:
     - Initial stand alone release
+  Modding:
+    - Added LSlib.entity.addCraftingCategory(...)

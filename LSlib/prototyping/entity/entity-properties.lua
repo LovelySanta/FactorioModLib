@@ -14,4 +14,14 @@ if not LSlib.entity then require "entity" else
     LSlib.item.setLocalisedName(entityType, entityName, localeString)
   end
 
+
+
+  function LSlib.entity.addCraftingCategory(entityType, entityName, craftingCategory)
+    if not data.raw[entityType][entityName].crafting_categories then
+      data.raw[entityType][entityName].crafting_categories = {}
+    end
+
+    table.insert(data.raw[entityType][entityName].crafting_categories, craftingCategory)
+  end
+
 end

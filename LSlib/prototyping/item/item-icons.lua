@@ -43,6 +43,21 @@ if not LSlib.item then require "item" else
 
 
 
+  function LSlib.item.getIconSize(itemType, itemName)
+    if data.raw[itemType][itemName].icons then -- icons present
+      local prototypeIconSize = {}
+      for iconLayerIndex, iconLayer in pairs(data.raw[itemType][itemName].icons) do
+        prototypeIconSize[iconLayerIndex] = iconLayer.icon_size or data.raw[itemType][itemName].icon_size
+      end
+      return prototypeIconSize
+
+     else -- icon + icon_size present
+      return {data.raw[itemType][itemName].icon_size}
+    end
+  end
+
+
+
   function LSlib.item.changeIcon(itemType, itemName, newIconFile, newIconSize)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
