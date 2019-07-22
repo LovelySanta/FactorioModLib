@@ -34,6 +34,58 @@ if LSlib and LSlib.utils then
       return color
     end
 
+    function LSlib.utils.table.orderedPairs(t)
+      -- Ordered table iterator, allow to iterate on the natural
+      -- order of the keys of a table. Equivalent of the pairs()
+      -- function on tables. Allows to iterate in order.
+      --
+      -- More info: http://lua-users.org/wiki/SortedIteration
+
+      local function orderedNext(t, state)
+        -- Equivalent of the next function, but returns the keys in the alphabetic
+        -- order. We use a temporary ordered key table that is stored in the
+        -- table being iterated.
+
+        local function __genOrderedIndex(t)
+          -- generate the index
+          local orderedIndex = {}
+          local n = 1
+          for key in pairs(t) do
+            -- table.insert(orderedIndex, key)
+            orderedIndex[n] = key
+            n = n + 1
+          end
+          table.sort(orderedIndex)
+          return orderedIndex
+        end
+
+        local key = nil
+        --print("orderedNext: state = "..tostring(state) )
+        if state == nil then
+          -- the first time, generate the index
+          t.__orderedIndex = __genOrderedIndex(t)
+          key = t.__orderedIndex[1]
+        else
+          -- fetch the next value
+          for i = 1, #t.__orderedIndex do
+            if t.__orderedIndex[i] == state then
+              key = t.__orderedIndex[i+1]
+            end
+          end
+        end
+
+        if key then
+          return key, t[key]
+        end
+
+        -- no more value to return, cleanup
+        t.__orderedIndex = nil
+        return
+      end
+
+      return orderedNext, t, nil
+    end
+
   end
 else
   require "utils"

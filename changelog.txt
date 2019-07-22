@@ -1,6 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.1.0 - Pre-release
-Date: 18. 7. 2019
+Version: 2019.7.22
+Date: 22. 7. 2019
+  Modding:
+    - Added LSlib.utils.table.orderedPairs(...)
+---------------------------------------------------------------------------------------------------
+Version: 2019.7.21 - Pre-release
+Date: 21. 7. 2019
   Major Features:
     - Initial stand alone release
   Modding:

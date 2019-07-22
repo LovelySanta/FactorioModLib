@@ -36,6 +36,27 @@ if LSlib and LSlib.utils then
 
       return opositeDirections[direction]
     end
+
+
+
+    function LSlib.utils.directions.toString(direction)
+      -- Function will return the string of the direction
+      local directionToString =
+      {
+        [defines.direction.north    ] = "north"    ,
+        [defines.direction.northeast] = "northeast",
+        [defines.direction.east     ] = "east"     ,
+        [defines.direction.southeast] = "southeast",
+        [defines.direction.south    ] = "south"    ,
+        [defines.direction.southwest] = "southwest",
+        [defines.direction.west     ] = "west"     ,
+        [defines.direction.northwest] = "northwest",
+      }
+
+      return directionToString[direction]
+    end
+
+
   end
 else
   require "utils"
