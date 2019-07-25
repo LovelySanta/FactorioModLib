@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2019.7.25
+Date: 25. 7. 2019
+  Modding:
+    - Added LSlib.utils.table.size(...)
+    - Added LSlib.recipe.getIcons(...)
+    - Added LSlib.recipe.getIconSize(...)
+    - Added LSlib.recipe.changeIcon(...)
+    - Added LSlib.recipe.changeIcons(...)
+    - Added LSlib.recipe.addIconTint(...)
+---------------------------------------------------------------------------------------------------
 Version: 2019.7.22
 Date: 22. 7. 2019
   Modding:

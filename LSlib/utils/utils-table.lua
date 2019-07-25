@@ -5,6 +5,14 @@ if LSlib and LSlib.utils then
     function LSlib.utils.table.isTable(t) return type(t) == "table" end
     function LSlib.utils.table.isEmpty(t) return not next(t)        end
 
+    function LSlib.utils.table.size(t)
+      local size = 0
+      for _,_ in pairs(t or {}) do
+        size = size + 1
+      end
+      return size
+    end
+
     function LSlib.utils.table.hasValue(table, value)
       for _,val in pairs(table) do
         if value == val then return true end

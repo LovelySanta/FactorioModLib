@@ -4,6 +4,7 @@ if LSlib then
 
     require "recipe-creation"
     require "recipe-properties"
+    require "recipe-icons"
     require "recipe-module"
 
     require "recipe-ingredient"

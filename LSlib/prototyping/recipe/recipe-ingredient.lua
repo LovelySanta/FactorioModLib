@@ -106,11 +106,11 @@ if not LSlib.recipe then require "recipe" else
       for index, ingredient in pairs(data.raw["recipe"][recipeName].ingredients) do
         if ingredient.name and ingredient.name == oldIngredientName then
           data.raw["recipe"][recipeName].ingredients[index].name = newIngredientName
-          data.raw["recipe"][recipeName].ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].ingredients[index].amount * amountMultiplier)
+          data.raw["recipe"][recipeName].ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].ingredients[index].amount * (amountMultiplier or 1))
           break
         elseif ingredient[1] and ingredient[1] == oldIngredientName then
           data.raw["recipe"][recipeName].ingredients[index][1] = newIngredientName
-          data.raw["recipe"][recipeName].ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].ingredients[index][2] * amountMultiplier)
+          data.raw["recipe"][recipeName].ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].ingredients[index][2] * (amountMultiplier or 1))
           break
         end
       end
@@ -120,11 +120,11 @@ if not LSlib.recipe then require "recipe" else
       for index, ingredient in pairs(data.raw["recipe"][recipeName].normal.ingredients) do
         if ingredient.name and ingredient.name == oldIngredientName then
           data.raw["recipe"][recipeName].normal.ingredients[index].name = newIngredientName
-          data.raw["recipe"][recipeName].normal.ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].normal.ingredients[index].amount * amountMultiplier)
+          data.raw["recipe"][recipeName].normal.ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].normal.ingredients[index].amount * (amountMultiplier or 1))
           break
         elseif ingredient[1] and ingredient[1] == oldIngredientName then
           data.raw["recipe"][recipeName].normal.ingredients[index][1] = newIngredientName
-          data.raw["recipe"][recipeName].normal.ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].normal.ingredients[index][2] * amountMultiplier)
+          data.raw["recipe"][recipeName].normal.ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].normal.ingredients[index][2] * (amountMultiplier or 1))
           break
         end
       end
@@ -134,11 +134,11 @@ if not LSlib.recipe then require "recipe" else
       for index, ingredient in pairs(data.raw["recipe"][recipeName].expensive.ingredients) do
         if ingredient.name and ingredient.name == oldIngredientName then
           data.raw["recipe"][recipeName].expensive.ingredients[index].name = newIngredientName
-          data.raw["recipe"][recipeName].expensive.ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].expensive.ingredients[index].amount * amountMultiplier)
+          data.raw["recipe"][recipeName].expensive.ingredients[index].amount = math.floor(.5 + data.raw["recipe"][recipeName].expensive.ingredients[index].amount * (amountMultiplier or 1))
           break
         elseif ingredient[1] and ingredient[1] == oldIngredientName then
           data.raw["recipe"][recipeName].expensive.ingredients[index][1] = newIngredientName
-          data.raw["recipe"][recipeName].expensive.ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].expensive.ingredients[index][2] * amountMultiplier)
+          data.raw["recipe"][recipeName].expensive.ingredients[index][2] = math.floor(.5 + data.raw["recipe"][recipeName].expensive.ingredients[index][2] * (amountMultiplier or 1))
           break
         end
       end
