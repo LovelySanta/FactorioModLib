@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2019.7.29
-Date: 25. 7. 2019
+Version: 2019.7.30
+Date: 30. 7. 2019
   Modding:
     - Added LSlib.recipe.canUseModuleEffect(...)
     - Added LSlib.recipe.getIngredientsCount(...)
