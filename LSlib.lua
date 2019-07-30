@@ -1,3 +1,9 @@
--- Require this file in your mod --
-require("LSlib/lib")             --
------------------------------------
+--                                                              --
+-- Require this file in your mod as: require("__LSlib__/LSlib") --
+-- You only have to require it once in your whole data stage.   --
+-- Can also be included in the runtime invironment (control).   --
+--                                                              --
+--[[]]                 require("LSlib/lib")                     --
+--                                                              --
+------------------------------------------------------------------
+------------------------------------------------------------------

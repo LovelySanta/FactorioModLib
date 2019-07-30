@@ -147,6 +147,45 @@ if not LSlib.recipe then require "recipe" else
 
 
 
+  function LSlib.recipe.getIngredientsCount(recipeName, countFluidsAsAnIngredient)
+    -- countFluidsAsAnIngredient can be nil, defaults to false
+    if not data.raw["recipe"][recipeName] then return {0 ,0} end
+
+    local ingredientsCount = 0
+    if data.raw["recipe"][recipeName].ingredients then
+      for _,ingredient in pairs(data.raw["recipe"][recipeName].ingredients) do
+        if not (countFluidsAsAnIngredient and ingredient.type and ingredient.type == "fluid") then
+          ingredientsCount = ingredientsCount + 1
+        end
+      end
+    end
+
+    local ingredientsCounts = nil
+    if data.raw["recipe"][recipeName].normal then
+      ingredientsCounts = ingredientsCounts or {}
+      ingredientsCounts[1] = 0
+      for index, ingredient in pairs(data.raw["recipe"][recipeName].normal.ingredients) do
+        if not (countFluidsAsAnIngredient and ingredient.type and ingredient.type == "fluid") then
+          ingredientsCounts[1] = ingredientsCounts[1] + 1
+        end
+      end
+    end
+
+    if data.raw["recipe"][recipeName].expensive then
+      ingredientsCounts = ingredientsCounts or {}
+      ingredientsCounts[2] = 0
+      for index, ingredient in pairs(data.raw["recipe"][recipeName].expensive.ingredients) do
+        if not (countFluidsAsAnIngredient and ingredient.type and ingredient.type == "fluid") then
+          ingredientsCounts[2] = ingredientsCounts[2] + 1
+        end
+      end
+    end
+
+    return (ingredientsCounts or {ingredientsCount, ingredientsCount})
+  end
+
+
+
   function LSlib.recipe.setEngergyRequired(recipeName, energyRequired)
     if not data.raw["recipe"][recipeName] then return end
 

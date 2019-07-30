@@ -33,6 +33,39 @@ if not LSlib.recipe then require "recipe" else
 
 
 
+  function LSlib.recipe.canUseModuleEffect(recipeToCheck, moduleNames)
+
+    if LSlib.utils.table.isTable(moduleNames) then
+      local allowsEffects = {}
+      for _,moduleName in pairs(moduleNames) do
+        allowsEffects[moduleName] = LSlib.recipe.canUseModuleEffect(recipeToCheck, moduleName)
+      end
+      return allowsEffects
+
+    else
+      if not data.raw["recipe"][recipeToCheck] then
+        LSlib.utils.log.log(string.format("WARNING: Tried checking if %q on recipe %q is allowed, but the recipe doesn't exist.", moduleNames, recipeToCheck))
+        return nil
+      end
+
+      if not data.raw["module"][moduleNames] then
+        LSlib.utils.log.log(string.format("WARNING: Tried checking if %q on recipe %q is allowed, but that module doesn't exist.", recipeToCheck, moduleNames))
+        return nil
+      end
+
+      if not data.raw["module"][moduleNames].limitation then return true end
+
+      for _,recipeName in pairs(data.raw["module"][moduleNames].limitation) do
+        if recipeName == recipeToCheck then
+          return true
+        end
+      end
+      return false
+    end
+  end
+
+
+
   function LSlib.recipe.removeModuleEffect(moduleNames, recipeToRemove)
 
     if LSlib.utils.table.isTable(moduleNames) then

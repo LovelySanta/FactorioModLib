@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2019.7.29
+Date: 25. 7. 2019
+  Modding:
+    - Added LSlib.recipe.canUseModuleEffect(...)
+    - Added LSlib.recipe.getIngredientsCount(...)
+    - Added LSlib.technology.isEnabled(...)
+    - Added LSlib.technology.isHidden(...)
+    - Added LSlib.technology.setHidden(...)
+---------------------------------------------------------------------------------------------------
 Version: 2019.7.25
 Date: 25. 7. 2019
   Modding:
@@ -17,6 +26,6 @@ Date: 22. 7. 2019
 Version: 2019.7.21 - Pre-release
 Date: 21. 7. 2019
   Major Features:
-    - Initial stand alone release
+    - Initial stand alone release (with all existing functions)
   Modding:
     - Added LSlib.entity.addCraftingCategory(...)
