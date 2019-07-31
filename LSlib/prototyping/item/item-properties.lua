@@ -17,6 +17,13 @@ if not LSlib.item then require "item" else
 
 
 
+  function LSlib.item.getSubgroup(itemType, itemName)
+    if not data.raw[itemType] then return end
+    if not data.raw[itemType][itemName] then return end
+
+    return data.raw[itemType][itemName].subgroup
+  end
+
   function LSlib.item.setSubgroup(itemType, itemName, subgroup)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
@@ -32,7 +39,6 @@ if not LSlib.item then require "item" else
 
     return data.raw[itemType][itemName].order
   end
-
 
   function LSlib.item.setOrderstring(itemType, itemName, orderstring)
     if not data.raw[itemType] then return end
@@ -67,8 +73,6 @@ if not LSlib.item then require "item" else
 
     data.raw[itemType][itemName].stack_size = stack_size
   end
-
-
 
   function LSlib.item.editStackSize(itemType, itemName, amountMultiplier)
     if not data.raw[itemType] then return end

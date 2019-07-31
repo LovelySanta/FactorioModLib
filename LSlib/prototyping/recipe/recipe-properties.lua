@@ -73,7 +73,6 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setCraftingCategory(recipe, category)
     if not data.raw["recipe"][recipe] then return end
-
     data.raw["recipe"][recipe].category = category
   end
 
@@ -81,7 +80,6 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setLocalisedName(recipeName, localeString)
     if not data.raw["recipe"][recipeName] then return end
-
     LSlib.item.setLocalisedName("recipe", recipeName, localeString)
   end
 
@@ -89,7 +87,6 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setSubgroup(recipeName, subgroup)
     if not data.raw["recipe"][recipeName] then return end
-
     LSlib.item.setSubgroup("recipe", recipeName, subgroup)
   end
 
@@ -97,7 +94,6 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setOrderstring(recipeName, orderstring)
     if not data.raw["recipe"][recipeName] then return end
-
     LSlib.item.setOrderstring("recipe", recipeName, orderstring)
   end
 
@@ -105,7 +101,6 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setShowMadeIn(recipeName, enableShowMadeIn)
     if not data.raw["recipe"][recipeName] then return end
-
     data.raw["recipe"][recipeName].always_show_made_in = enableShowMadeIn
   end
 
