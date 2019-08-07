@@ -78,22 +78,31 @@ if not LSlib.recipe then require "recipe" else
 
 
 
+  function LSlib.recipe.getLocalisedName(recipeName)
+    return LSlib.item.getLocalisedName("recipe", recipeName)
+  end
+
   function LSlib.recipe.setLocalisedName(recipeName, localeString)
-    if not data.raw["recipe"][recipeName] then return end
     LSlib.item.setLocalisedName("recipe", recipeName, localeString)
   end
 
 
 
+  function LSlib.recipe.getSubgroup(recipeName)
+    return LSlib.item.getSubgroup("recipe", recipeName)
+  end
+
   function LSlib.recipe.setSubgroup(recipeName, subgroup)
-    if not data.raw["recipe"][recipeName] then return end
     LSlib.item.setSubgroup("recipe", recipeName, subgroup)
   end
 
 
 
+  function LSlib.recipe.getOrderstring(recipeName)
+    return LSlib.item.getOrderstring("recipe", recipeName)
+  end
+
   function LSlib.recipe.setOrderstring(recipeName, orderstring)
-    if not data.raw["recipe"][recipeName] then return end
     LSlib.item.setOrderstring("recipe", recipeName, orderstring)
   end
 

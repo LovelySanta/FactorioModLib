@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2019.8.7
+Date: 7. 8. 2019
+  Modding:
+    - Added LSlib.recipe.getLocalisedName(...)
+    - Added LSlib.recipe.getSubgroup(...)
+    - Added LSlib.recipe.getOrderstring(...)
+---------------------------------------------------------------------------------------------------
 Version: 2019.7.31
 Date: 31. 7. 2019
   Modding:
