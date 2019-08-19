@@ -24,6 +24,18 @@ if not LSlib.styles then require "styles" else
       font_color                        = customLabelSpecifications.font_color                        or defaultLabelStyle.font_color                                                  ,
       disabled_font_color               = customLabelSpecifications.disabled_font_color               or defaultLabelStyle.disabled_font_color                                         ,
 
+      size                              = customLabelSpecifications.size                              or defaultLabelStyle.size                                                        ,
+      minimal_size                      = customLabelSpecifications.minimal_size                      or ((not customLabelSpecifications.size) and defaultLabelStyle.minimal_size     ),
+      maximal_size                      = customLabelSpecifications.maximal_size                      or ((not customLabelSpecifications.size) and defaultLabelStyle.maximal_size     ),
+
+      width                             = customLabelSpecifications.width                             or defaultLabelStyle.width                                                       ,
+      minimal_width                     = customLabelSpecifications.minimal_width                     or ((not customLabelSpecifications.width) and defaultLabelStyle.minimal_width   ),
+      maximal_width                     = customLabelSpecifications.maximal_width                     or ((not customLabelSpecifications.width) and defaultLabelStyle.maximal_width   ),
+
+      height                            = customLabelSpecifications.height                            or defaultLabelStyle.height                                                      ,
+      minimal_height                    = customLabelSpecifications.minimal_height                    or ((not customLabelSpecifications.height) and defaultLabelStyle.minimal_height ),
+      maximal_height                    = customLabelSpecifications.maximal_height                    or ((not customLabelSpecifications.height) and defaultLabelStyle.maximal_height ),
+
       signle_line                       = customLabelSpecifications.signle_line                       or defaultLabelStyle.signle_line                                                 ,
       want_ellipsis                     = customLabelSpecifications.want_ellipsis                     or defaultLabelStyle.want_ellipsis                                               ,
 

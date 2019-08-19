@@ -2,10 +2,11 @@
 if LSlib then
   if not LSlib.utils then LSlib.utils = {}
 
-    require "utils-table"
+    require "utils-directions"
     require "utils-log"
     require "utils-string"
-    require "utils-directions"
+    require "utils-table"
+    require "utils-units"
 
   end
 end

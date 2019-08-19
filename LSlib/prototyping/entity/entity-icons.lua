@@ -2,7 +2,7 @@
 if not LSlib.entity then require "entity" else
 
   function LSlib.entity.getIcons(entityType, entityName, layerScale, layerShift, layerTint)
-    LSlib.item.getIcons(entityType, entityName, layerScale, layerShift, layerTint)
+    return LSlib.item.getIcons(entityType, entityName, layerScale, layerShift, layerTint)
   end
 
 

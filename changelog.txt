@@ -1,4 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2019.8.19
+Date: 19. 8. 2019
+  Modding:
+    - Added LSlib.entity.removeShadowsFromSprite(...)
+    - Added LSlib.entity.removeShadowsFromSpriteVariation(...)
+    - Added LSlib.entity.removeShadowFromSprite4Way(...)
+    - Fixed LSlib.entity.getIcons(...)
+    - Fixed LSlib.utils.string.split(...)
+    - Added LSlib.styles.addTableStyle(...)
+    - Fixed LSlib.styles.addButtonStyle(...)
+    - Fixed LSlib.styles.addLabelStyle(...)
+    - Fixed LSlib.gui.layout.addTable(...)
+    - Added LSlib.utils.units.getLocalisedUnit(...)
+    - Added some localised utility messages
+---------------------------------------------------------------------------------------------------
 Version: 2019.8.7
 Date: 7. 8. 2019
   Modding:

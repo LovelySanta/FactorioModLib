@@ -127,6 +127,10 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       text                   = textfieldOptions.text                  ,
       tooltip                = textfieldOptions.tooltip               ,
 
+      numeric                = textfieldOptions.numeric               ,
+      allow_decimal          = textfieldOptions.allow_decimal         ,
+      is_password            = textfieldOptions.is_password           ,
+
       style                  = textfieldOptions.style                 ,
       visible                = textfieldOptions.visible               ,
       enabled                = textfieldOptions.enabled               ,
@@ -152,7 +156,7 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   end
 
   function LSlib.gui.layout.addTable(layoutTable, parentPath, tableName, numberOfColumns, tableOptions)
-    listboxOptions = listboxOptions or {}
+    tableOptions = tableOptions or {}
 
     return LSlib.gui.layout.addElement(layoutTable, parentPath, {
       type                               = "table"                                        ,

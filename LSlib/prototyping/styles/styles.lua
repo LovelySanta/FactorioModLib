@@ -7,6 +7,7 @@ if LSlib then
     require "styles-button"
     require "styles-label"
     require "styles-image"
+    require "styles-table"
 
     require "styles-filler"
     require "styles-tab"
