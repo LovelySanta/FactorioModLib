@@ -19,40 +19,37 @@ if LSlib and LSlib.utils then
     end
 
 
-
+    local opositeDirections =
+    {
+      [defines.direction.north    ] = defines.direction.south    ,
+      [defines.direction.northeast] = defines.direction.southwest,
+      [defines.direction.east     ] = defines.direction.west     ,
+      [defines.direction.southeast] = defines.direction.northwest,
+      [defines.direction.south    ] = defines.direction.north    ,
+      [defines.direction.southwest] = defines.direction.northeast,
+      [defines.direction.west     ] = defines.direction.east     ,
+      [defines.direction.northwest] = defines.direction.southeast,
+    }
     function LSlib.utils.directions.oposite(direction)
       -- Function will return the oposite direction of the given direction
-      local opositeDirections =
-      {
-        [defines.direction.north    ] = defines.direction.south    ,
-        [defines.direction.northeast] = defines.direction.southwest,
-        [defines.direction.east     ] = defines.direction.west     ,
-        [defines.direction.southeast] = defines.direction.northwest,
-        [defines.direction.south    ] = defines.direction.north    ,
-        [defines.direction.southwest] = defines.direction.northeast,
-        [defines.direction.west     ] = defines.direction.east     ,
-        [defines.direction.northwest] = defines.direction.southeast,
-      }
-
       return opositeDirections[direction]
     end
 
 
 
+    local directionToString =
+    {
+      [defines.direction.north    ] = "north"    ,
+      [defines.direction.northeast] = "northeast",
+      [defines.direction.east     ] = "east"     ,
+      [defines.direction.southeast] = "southeast",
+      [defines.direction.south    ] = "south"    ,
+      [defines.direction.southwest] = "southwest",
+      [defines.direction.west     ] = "west"     ,
+      [defines.direction.northwest] = "northwest",
+    }
     function LSlib.utils.directions.toString(direction)
       -- Function will return the string of the direction
-      local directionToString =
-      {
-        [defines.direction.north    ] = "north"    ,
-        [defines.direction.northeast] = "northeast",
-        [defines.direction.east     ] = "east"     ,
-        [defines.direction.southeast] = "southeast",
-        [defines.direction.south    ] = "south"    ,
-        [defines.direction.southwest] = "southwest",
-        [defines.direction.west     ] = "west"     ,
-        [defines.direction.northwest] = "northwest",
-      }
-
       return directionToString[direction]
     end
 

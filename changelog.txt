@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2019.8.23
+Date: 23. 8. 2019
+  Modding:
+    - Optimized LSlib.utils.directions.oposite(...)
+    - Optimized LSlib.utils.directions.toString(...)
+    - Added LSlib.utils.shapes.createCircleContour(...)
+    - Added LSlib.utils.shapes.getCircleContour(...)
+---------------------------------------------------------------------------------------------------
 Version: 2019.8.19
 Date: 19. 8. 2019
   Modding:
