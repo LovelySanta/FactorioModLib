@@ -97,7 +97,6 @@ if not LSlib.technology then require "technology" else
       end
     end
 
-
     if containDuplicates then
       -- STEP 2: if we have duplicates, we create a new prerequisite table without duplicates
       local newPrerequisites = {}
@@ -106,6 +105,30 @@ if not LSlib.technology then require "technology" else
       end
 
       -- STEP 3: we use this newly created prerequisite table in the technology tree
+      data.raw["technology"][technologyName].prerequisites = util.table.deepcopy(newPrerequisites)
+    end
+  end
+
+
+
+  function LSlib.technology.removeHiddenPrerequisites(technologyName)
+    if not data.raw["technology"][technologyName]               then return end
+    if not data.raw["technology"][technologyName].prerequisites then return end
+
+    -- STEP 1: obtain all the valid prerequisites (no hidden ones)
+    local newPrerequisites = {}
+    local containHidden = false
+    for _,prerequisiteName in pairs(data.raw["technology"][technologyName].prerequisites) do
+      if LSlib.technology.isHidden(prerequisiteName) then
+        containHidden = true
+        LSlib.utils.log.log(string.format("TechTreeCleanup: Removing hidden prerequisite %q from technology %q.", prerequisiteName, technologyName))
+      else
+        table.insert(newPrerequisites, prerequisiteName)
+      end
+    end
+
+    if containHidden then
+      -- STEP 2: if we have hidden duplicates, we leave only the non-hidden ones
       data.raw["technology"][technologyName].prerequisites = util.table.deepcopy(newPrerequisites)
     end
   end
@@ -155,7 +178,12 @@ if not LSlib.technology then require "technology" else
       LSlib.technology.removeDuplicatePrerequisites(technologyName)
     end
 
+    -- STEP 2: we remove hidden entries in the technology table
+    for technologyName, technology in pairs(data.raw["technology"]) do
+      LSlib.technology.removeHiddenPrerequisites(technologyName)
+    end
 
+    -- STEP 3: remove the redundant entries
     for technologyName, technology in pairs(data.raw["technology"]) do
       LSlib.technology.removeRedundantPrerequisites(technologyName)
     end
