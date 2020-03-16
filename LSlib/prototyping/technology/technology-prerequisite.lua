@@ -119,7 +119,7 @@ if not LSlib.technology then require "technology" else
     local newPrerequisites = {}
     local containHidden = false
     for _,prerequisiteName in pairs(data.raw["technology"][technologyName].prerequisites) do
-      if LSlib.technology.isHidden(prerequisiteName) then
+      if LSlib.technology.isHidden(prerequisiteName) or (not LSlib.technology.isEnabled(prerequisiteName)) then
         containHidden = true
         LSlib.utils.log.log(string.format("TechTreeCleanup: Removing hidden prerequisite %q from technology %q.", prerequisiteName, technologyName))
       else
@@ -155,7 +155,8 @@ if not LSlib.technology then require "technology" else
            prePrerequisites[redundantPrerequisiteName]           then -- must be redundant
 
           -- STEP 2b: remove the technology prerequisite if the prerequisite is a prerequisite of another technology prerequisite
-          data.raw["technology"][technologyName].prerequisites[redundantPrerequisiteIndex] = nil -- remove it
+          --data.raw["technology"][technologyName].prerequisites[redundantPrerequisiteIndex] = nil -- remove it
+          LSlib.technology.removePrerequisite(technologyName, redundantPrerequisiteName) -- remove it
           removedPrerequisites[redundantPrerequisiteName] = true
           LSlib.utils.log.log(string.format("TechTreeCleanup: Removing redundant prerequisite %q from technology %q.", redundantPrerequisiteName, technologyName))
         end

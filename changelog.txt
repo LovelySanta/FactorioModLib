@@ -1,6 +1,33 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2020. 1. 18
-Date: 30. 8. 2019
+Version: 2020.3.16
+Date: 14. 3. 2020
+  Modding:
+    - Fixed LSlib.item.getIconSize(...) crashing when an invalid item name is passed
+    - Added LSlib.technology.setVisible(...) as counterpart of LSlib.technology.setHidden(...)
+---------------------------------------------------------------------------------------------------
+Version: 2020.2.23
+Date: 23. 2. 2020
+  Modding:
+    - Updated LSlib.technology.removeHiddenPrerequisites(...) to take enabled setting into account
+---------------------------------------------------------------------------------------------------
+Version: 2020.2.11
+Date: 11. 2. 2020
+  Modding:
+    - Updated LSlib.item.changeIcon(...) to allow icon mipmaping
+    - Updated LSlib.item.changeIcons(...) to allow icon mipmaping
+---------------------------------------------------------------------------------------------------
+Version: 2020.1.24
+Date: 24. 1. 2020
+  Modding:
+    - Updated the parameter localised string to reflect the new GUI layout
+---------------------------------------------------------------------------------------------------
+Version: 2020.1.23
+Date: 23. 1. 2020
+  Features:
+    - Updated for factorio 0.18
+---------------------------------------------------------------------------------------------------
+Version: 2020.1.18
+Date: 18. 1. 2020
   Modding:
     - Added LSlib.technology.removeHiddenPrerequisites(...)
 ---------------------------------------------------------------------------------------------------

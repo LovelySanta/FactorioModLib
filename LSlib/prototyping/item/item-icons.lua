@@ -44,37 +44,43 @@ if not LSlib.item then require "item" else
 
 
   function LSlib.item.getIconSize(itemType, itemName)
-    if data.raw[itemType][itemName].icons then -- icons present
-      local prototypeIconSize = {}
-      for iconLayerIndex, iconLayer in pairs(data.raw[itemType][itemName].icons) do
-        prototypeIconSize[iconLayerIndex] = iconLayer.icon_size or data.raw[itemType][itemName].icon_size
-      end
-      return prototypeIconSize
+    if data.raw[itemType][itemName] then
+      if data.raw[itemType][itemName].icons then -- icons present
+        local prototypeIconSize = {}
+        for iconLayerIndex, iconLayer in pairs(data.raw[itemType][itemName].icons) do
+          prototypeIconSize[iconLayerIndex] = iconLayer.icon_size or data.raw[itemType][itemName].icon_size
+        end
+        return prototypeIconSize
 
-     else -- icon + icon_size present
-      return {data.raw[itemType][itemName].icon_size}
+      else -- icon + icon_size present
+        return {data.raw[itemType][itemName].icon_size}
+      end
+    else
+      return {} -- nothing found, we have to return something
     end
   end
 
 
 
-  function LSlib.item.changeIcon(itemType, itemName, newIconFile, newIconSize)
+  function LSlib.item.changeIcon(itemType, itemName, newIconFile, newIconSize, newIconMipmap)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
 
     data.raw[itemType][itemName].icon = newIconFile
     data.raw[itemType][itemName].icon_size = newIconSize
+    data.raw[itemType][itemName].icon_mipmaps = newIconMipmap
     data.raw[itemType][itemName].icons = nil
   end
 
 
 
-  function LSlib.item.changeIcons(itemType, itemName, newIcons, newIconSize)
+  function LSlib.item.changeIcons(itemType, itemName, newIcons, newIconSize, newIconMipmap)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
 
     data.raw[itemType][itemName].icon = nil
     data.raw[itemType][itemName].icon_size = newIconSize -- could be set, or could be nil
+    data.raw[itemType][itemName].icon_mipmaps = newIconMipmap
     data.raw[itemType][itemName].icons = util.table.deepcopy(newIcons)
   end
 
