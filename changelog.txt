@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2020.5.11
+Date: 11. 5. 2020
+  Modding:
+    - Fixed LSlib.recipe.setMainResult(...) crashing when used
+    - Added LSlib.recipe.recipePrototypeCleanup(...) 
+---------------------------------------------------------------------------------------------------
 Version: 2020.3.16
 Date: 14. 3. 2020
   Modding:

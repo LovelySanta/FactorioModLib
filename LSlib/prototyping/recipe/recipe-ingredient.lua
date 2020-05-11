@@ -3,6 +3,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.addIngredient(recipeName, ingredientName, ingredientAmount, ingredientType)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].ingredients then
       local alreadyPresent = false
@@ -67,6 +68,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.removeIngredient(recipeName, ingredientName)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].ingredients then
       for index, ingredient in pairs(data.raw["recipe"][recipeName].ingredients) do
@@ -101,6 +103,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.editIngredient(recipeName, oldIngredientName, newIngredientName, amountMultiplier)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].ingredients then
       for index, ingredient in pairs(data.raw["recipe"][recipeName].ingredients) do
@@ -150,6 +153,7 @@ if not LSlib.recipe then require "recipe" else
   function LSlib.recipe.getIngredientsCount(recipeName, countFluidsAsAnIngredient)
     -- countFluidsAsAnIngredient can be nil, defaults to false
     if not data.raw["recipe"][recipeName] then return {0 ,0} end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     local ingredientsCount = 0
     if data.raw["recipe"][recipeName].ingredients then
@@ -188,6 +192,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setEngergyRequired(recipeName, energyRequired)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].ingredients then
       data.raw["recipe"][recipeName].energy_required = energyRequired
@@ -207,6 +212,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.editEngergyRequired(recipeName, amountMultiplier)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].ingredients then
       data.raw["recipe"][recipeName].energy_required = data.raw["recipe"][recipeName].energy_required * amountMultiplier
@@ -226,6 +232,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.getEngergyRequired(recipeName)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     return data.raw["recipe"][recipeName]          .energy_required or
            data.raw["recipe"][recipeName].normal   .energy_required or

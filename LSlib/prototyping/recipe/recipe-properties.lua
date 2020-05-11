@@ -3,6 +3,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.isEnabled(recipe)
     if not data.raw["recipe"][recipe] then return nil end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     local normalEnabled = false
     local expensiveEnabled = false
@@ -37,6 +38,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.enable(recipe)
     if not data.raw["recipe"][recipe] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipe].normal then
       data.raw["recipe"][recipe].normal.enabled = true
@@ -55,6 +57,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.disable(recipe)
     if not data.raw["recipe"][recipe] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipe].normal then
       data.raw["recipe"][recipe].normal.enabled = false

@@ -4,6 +4,7 @@ if not LSlib.recipe then require "recipe" else
   function LSlib.recipe.addResult(recipeName, resultName, resultAmount, resultType)
     -- argument resultType is optional, defaults to "item"
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].result then
       data.raw["recipe"][recipeName].results = {{
@@ -100,6 +101,7 @@ if not LSlib.recipe then require "recipe" else
   function LSlib.recipe.editResult(recipeName, oldResultName, newResultName, amountMultiplier)
     -- argument amountMultiplier is optional, defaults to 1
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].result and data.raw["recipe"][recipeName].result == oldResultName then
       data.raw["recipe"][recipeName].result = newResultName
@@ -176,6 +178,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.getResultCount(recipeName, resultName)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].result then
       return data.raw["recipe"][recipeName].result_count or 1
@@ -208,6 +211,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setResultCount(recipeName, resultName, resultAmount)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].result then
       data.raw["recipe"][recipeName].result_count = resultAmount
@@ -256,6 +260,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setResultProbability(recipeName, resultName, resultProbability)
     if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     resultProbability = ((resultProbability~=1) and resultProbability)
 
