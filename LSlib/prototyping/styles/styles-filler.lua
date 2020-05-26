@@ -50,7 +50,7 @@ if not LSlib.styles then require "styles" else
       name = "LSlib_default_header_button",
       parent = "mini_button",
 
-      size = guiStyles["search_button"].size
+      size = guiStyles["frame_action_button"].size
     }
 
 

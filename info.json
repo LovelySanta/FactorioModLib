@@ -1,12 +1,12 @@
 {
   "name": "LSlib",
-  "version": "2020.5.11",
+  "version": "2020.5.26",
   "factorio_version": "0.18",
   "title": "Lovely_santa's library of knowledge",
   "author": "lovely_santa",
   "contact": "https://mods.factorio.com/mod/LSlib/discussion",
   "description": "Library used by mods created by lovely_santa",
   "dependencies": [
-    "base >= 0.18.01"
+    "base >= 0.18.27"
   ]
 }
