@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2020.7.4
+Date: 4. 7. 2020
+  Modding:
+    - Fixed edge case in LSlib.technology.removeIngredient(...)
+    - Fixed edge case in LSlib.technology.addIngredient(...)
+---------------------------------------------------------------------------------------------------
 Version: 2020.5.26
 Date: 26. 5. 2020
   Modding:

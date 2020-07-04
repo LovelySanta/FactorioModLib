@@ -9,12 +9,12 @@ if not LSlib.technology then require "technology" else
 
     if data.raw["technology"][technologyName].unit.ingredients then
       for index, ingredient in pairs(data.raw["technology"][technologyName].unit.ingredients) do
-        if ingredient[1] == sciencePackName then
+        if (ingredient[1] or ingredient.name) == sciencePackName then
           table.remove(data.raw["technology"][technologyName].unit.ingredients, index)
           if #data.raw["technology"][technologyName].unit.ingredients == 0 then
             data.raw["technology"][technologyName].unit.ingredients = nil
           end
-          break
+          return
         end
       end
     else
@@ -33,7 +33,7 @@ if not LSlib.technology then require "technology" else
 
     if data.raw["technology"][technologyName].unit.ingredients then
       for index, ingredient in pairs(data.raw["technology"][technologyName].unit.ingredients) do
-        if ingredient[1] == sciencePackName then
+        if (ingredient[1] or ingredient.name) == sciencePackName then
           LSlib.utils.log.log(string.format("WARNING: Tried adding ingredient %q to %q which was already present. Updating amount instead.", sciencePackName, technologyName))
           data.raw["technology"][technologyName].unit.ingredients[index][2] = sciencePackAmount
           return
