@@ -5,6 +5,9 @@ Date: 21. 7. 2020
     - Fixed LSlib.recipe.recipePrototypeCleanup(...) setting values to default when value is false
     - Fixed LSlib.item.getIcons(...) not working correctly if shift existed and scale is set
     - Fixed LSlib.item.getIcons(...) not working correctly if no tint was supplied
+    - Fixed typo in LSlib.recipe.setEngergyRequired(...) and added backwards compatibility
+    - Fixed typo in LSlib.recipe.editEngergyRequired(...) and added backwards compatibility
+    - Fixed typo in LSlib.recipe.getEngergyRequired(...) and added backwards compatibility
 ---------------------------------------------------------------------------------------------------
 Version: 2020.7.4
 Date: 4. 7. 2020

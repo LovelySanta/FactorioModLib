@@ -190,7 +190,7 @@ if not LSlib.recipe then require "recipe" else
 
 
 
-  function LSlib.recipe.setEngergyRequired(recipeName, energyRequired)
+  function LSlib.recipe.setEnergyRequired(recipeName, energyRequired)
     if not data.raw["recipe"][recipeName] then return end
     LSlib.recipe.recipePrototypeCleanup(recipeName)
 
@@ -210,7 +210,7 @@ if not LSlib.recipe then require "recipe" else
 
 
 
-  function LSlib.recipe.editEngergyRequired(recipeName, amountMultiplier)
+  function LSlib.recipe.editEnergyRequired(recipeName, amountMultiplier)
     if not data.raw["recipe"][recipeName] then return end
     LSlib.recipe.recipePrototypeCleanup(recipeName)
 
@@ -230,7 +230,7 @@ if not LSlib.recipe then require "recipe" else
 
 
 
-  function LSlib.recipe.getEngergyRequired(recipeName)
+  function LSlib.recipe.getEnergyRequired(recipeName)
     if not data.raw["recipe"][recipeName] then return end
     LSlib.recipe.recipePrototypeCleanup(recipeName)
 
@@ -238,5 +238,12 @@ if not LSlib.recipe then require "recipe" else
            data.raw["recipe"][recipeName].normal   .energy_required or
            data.raw["recipe"][recipeName].expensive.energy_required
   end
+
+
+
+  -- Legacy stuff. Refrain from using it as this might get removed at some point...
+  LSlib.recipe.setEngergyRequired = LSlib.recipe.setEnergyRequired
+  LSlib.recipe.editEngergyRequired = LSlib.recipe.editEnergyRequired
+  LSlib.recipe.getEngergyRequired = LSlib.recipe.getEnergyRequired
 
 end
