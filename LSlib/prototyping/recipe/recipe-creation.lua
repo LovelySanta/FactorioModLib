@@ -38,20 +38,45 @@ if not LSlib.recipe then require "recipe" else
     local function setProperty(propertyName, propertyDefault)
       if recipeDefined.normal and recipeDefined.expensive then -- use normal/expensive declaration
         if LSlib.utils.table.isTable(recipe.normal) then
-          data.raw["recipe"][recipeName].normal[propertyName] = recipe.normal[propertyName] or recipe[propertyName] or propertyDefault
+          if recipe.normal[propertyName] ~= nil then
+            data.raw["recipe"][recipeName].normal[propertyName] = recipe.normal[propertyName]
+          elseif recipe[propertyName] ~= nil then
+            data.raw["recipe"][recipeName].normal[propertyName] = recipe[propertyName]
+          else
+            data.raw["recipe"][recipeName].normal[propertyName] = propertyDefault
+          end
+          --data.raw["recipe"][recipeName].normal[propertyName] = recipe.normal[propertyName] or recipe[propertyName] or propertyDefault
         end
         if LSlib.utils.table.isTable(recipe.expensive) then
-          data.raw["recipe"][recipeName].expensive[propertyName] = recipe.expensive[propertyName] or recipe[propertyName] or propertyDefault
+          if recipe.expensive[propertyName] ~= nil then
+            data.raw["recipe"][recipeName].expensive[propertyName] = recipe.expensive[propertyName]
+          elseif recipe[propertyName] ~= nil then
+            data.raw["recipe"][recipeName].expensive[propertyName] = recipe[propertyName]
+          else
+            data.raw["recipe"][recipeName].expensive[propertyName] = propertyDefault
+          end
         end
         data.raw["recipe"][recipeName][propertyName] = nil
 
       else -- use default declaration as there is no need for normal/expensive
         if LSlib.utils.table.isTable(recipe.normal) then
-          data.raw["recipe"][recipeName][propertyName] = recipe.normal[propertyName] or recipe[propertyName] or propertyDefault
+          if recipe.normal[propertyName] ~= nil then
+            data.raw["recipe"][recipeName][propertyName] = recipe.normal[propertyName]
+          elseif recipe[propertyName] ~= nil then
+            data.raw["recipe"][recipeName][propertyName] = recipe[propertyName]
+          else
+            data.raw["recipe"][recipeName][propertyName] = propertyDefault
+          end
           data.raw["recipe"][recipeName].normal[propertyName] = nil
         end
         if LSlib.utils.table.isTable(recipe.expensive) then
-          data.raw["recipe"][recipeName][propertyName] = recipe.expensive[propertyName] or recipe[propertyName] or propertyDefault
+          if recipe.normal[propertyName] ~= nil then
+            data.raw["recipe"][recipeName][propertyName] = recipe.expensive[propertyName]
+          elseif recipe[propertyName] ~= nil then
+            data.raw["recipe"][recipeName][propertyName] = recipe[propertyName]
+          else
+            data.raw["recipe"][recipeName][propertyName] = propertyDefault
+          end
           data.raw["recipe"][recipeName].expensive[propertyName] = nil
         end
       end
