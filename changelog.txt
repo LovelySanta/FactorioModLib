@@ -8,6 +8,8 @@ Date: 21. 7. 2020
     - Fixed typo in LSlib.recipe.setEngergyRequired(...) and added backwards compatibility
     - Fixed typo in LSlib.recipe.editEngergyRequired(...) and added backwards compatibility
     - Fixed typo in LSlib.recipe.getEngergyRequired(...) and added backwards compatibility
+    - Added compatibility for recipe difficulites in LSlib.recipe.setShowMadeIn(...)
+    - Added LSlib.recipe.setShowProduct(...)
 ---------------------------------------------------------------------------------------------------
 Version: 2020.7.4
 Date: 4. 7. 2020

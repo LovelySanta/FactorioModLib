@@ -113,7 +113,36 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.setShowMadeIn(recipeName, enableShowMadeIn)
     if not data.raw["recipe"][recipeName] then return end
-    data.raw["recipe"][recipeName].always_show_made_in = enableShowMadeIn
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
+
+    if data.raw["recipe"][recipeName].normal or data.raw["recipe"][recipeName].expensive then
+      if data.raw["recipe"][recipeName].normal then
+        data.raw["recipe"][recipeName].normal.always_show_made_in = enableShowMadeIn
+      end
+      if data.raw["recipe"][recipeName].expensive then
+        data.raw["recipe"][recipeName].expensive.always_show_made_in = enableShowMadeIn
+      end
+    else
+      data.raw["recipe"][recipeName].always_show_made_in = enableShowMadeIn
+    end
+  end
+
+
+
+  function LSlib.recipe.setShowProduct(recipeName, enableShowProducts)
+    if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
+
+    if data.raw["recipe"][recipeName].normal or data.raw["recipe"][recipeName].expensive then
+      if data.raw["recipe"][recipeName].normal then
+        data.raw["recipe"][recipeName].normal.always_show_products = enableShowProducts
+      end
+      if data.raw["recipe"][recipeName].expensive then
+        data.raw["recipe"][recipeName].expensive.always_show_products = enableShowProducts
+      end
+    else
+      data.raw["recipe"][recipeName].always_show_products = enableShowProducts
+    end
   end
 
 end
