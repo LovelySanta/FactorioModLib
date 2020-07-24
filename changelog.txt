@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2020.7.21
-Date: 21. 7. 2020
+Version: 2020.7.24
+Date: 24. 7. 2020
   Modding:
     - Fixed LSlib.recipe.recipePrototypeCleanup(...) setting values to default when value is false
     - Fixed LSlib.item.getIcons(...) not working correctly if shift existed and scale is set
