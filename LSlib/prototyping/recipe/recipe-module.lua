@@ -2,6 +2,9 @@
 if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.allowModuleEffect(moduleNames, recipeToAdd)
+    if moduleNames == nil then
+      moduleNames = LSlib.item.getAllModuleNames(true)
+    end
 
     if LSlib.utils.table.isTable(moduleNames) then
       for _,moduleName in pairs(moduleNames) do
@@ -34,6 +37,9 @@ if not LSlib.recipe then require "recipe" else
 
 
   function LSlib.recipe.canUseModuleEffect(recipeToCheck, moduleNames)
+    if moduleNames == nil then
+      moduleNames = LSlib.item.getAllModuleNames()
+    end
 
     if LSlib.utils.table.isTable(moduleNames) then
       local allowsEffects = {}
@@ -67,6 +73,9 @@ if not LSlib.recipe then require "recipe" else
 
 
   function LSlib.recipe.removeModuleEffect(moduleNames, recipeToRemove)
+    if moduleNames == nil then
+      moduleNames = LSlib.item.getAllModuleNames(true)
+    end
 
     if LSlib.utils.table.isTable(moduleNames) then
       for _,moduleName in pairs(moduleNames) do

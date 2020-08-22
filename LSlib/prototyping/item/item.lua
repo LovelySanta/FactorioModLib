@@ -4,6 +4,7 @@ if LSlib then
 
     require "item-creation"
     require "item-properties"
+    require "item-module"
     require "item-icons"
 
   end

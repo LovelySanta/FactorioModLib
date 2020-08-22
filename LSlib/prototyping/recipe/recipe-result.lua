@@ -129,6 +129,11 @@ if not LSlib.recipe then require "recipe" else
     end
 
     if data.raw["recipe"][recipeName].normal then
+      if data.raw["recipe"][recipeName].normal.result and data.raw["recipe"][recipeName].normal.result == oldResultName then
+        data.raw["recipe"][recipeName].normal.result = newResultName
+        data.raw["recipe"][recipeName].normal.result_count = (data.raw["recipe"][recipeName].normal.result_count or 1) * (amountMultiplier or 1)
+      end
+
       if data.raw["recipe"][recipeName].normal.results then
         for index, result in pairs(data.raw["recipe"][recipeName].normal.results) do
           if result.name == oldResultName then
@@ -151,6 +156,11 @@ if not LSlib.recipe then require "recipe" else
     end
 
     if data.raw["recipe"][recipeName].expensive then
+      if data.raw["recipe"][recipeName].expensive.result and data.raw["recipe"][recipeName].expensive.result == oldResultName then
+        data.raw["recipe"][recipeName].expensive.result = newResultName
+        data.raw["recipe"][recipeName].expensive.result_count = (data.raw["recipe"][recipeName].expensive.result_count or 1) * (amountMultiplier or 1)
+      end
+
       if data.raw["recipe"][recipeName].expensive.results then
         for index, result in pairs(data.raw["recipe"][recipeName].expensive.results) do
           if result.name == oldResultName then

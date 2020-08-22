@@ -1,4 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2020.8.22
+Date: 22. 8. 2020
+  Modding:
+    - Removed trailing zeros in LSlib.utils.units.getLocalisedUnit(...)
+    - Fixed crash in LSlib.recipe.duplicate(...) when the recipe didn't exist
+    - Added LSlib.item.getAllModuleNames(...)
+    - Updated LSlib.recipe.allowModuleEffect(...) to default to allow all modules
+    - Updated LSlib.recipe.canUseModuleEffect(...) to default to check all modules
+    - Updated LSlib.recipe.removeModuleEffect(...) to default to remove all modules
+---------------------------------------------------------------------------------------------------
+Version: 2020.8.7
+Date: 7. 8. 2020
+  Modding:
+    - Fixed missed cases in LSlib.recipe.editResult(...)
+---------------------------------------------------------------------------------------------------
 Version: 2020.7.24
 Date: 24. 7. 2020
   Modding:
@@ -26,7 +41,7 @@ Version: 2020.5.11
 Date: 11. 5. 2020
   Modding:
     - Fixed LSlib.recipe.setMainResult(...) crashing when used
-    - Added LSlib.recipe.recipePrototypeCleanup(...) 
+    - Added LSlib.recipe.recipePrototypeCleanup(...)
 ---------------------------------------------------------------------------------------------------
 Version: 2020.3.16
 Date: 14. 3. 2020

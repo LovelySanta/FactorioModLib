@@ -18,14 +18,24 @@ if LSlib and LSlib.utils then
 
       local prefix = #LSlib.utils.units.localisedPrefixes
       local prefixIndex = 0
-      while (value > 1000 and prefixIndex < prefix) do
-        value = value / 1000
+      while (value > 1000.0 and prefixIndex < prefix) do
+        value = value / 1000.0
         prefixIndex = prefixIndex + 1
       end
       prefix = LSlib.utils.units.localisedPrefixes[prefixIndex]
 
-      if roundPresicion then -- make sure it is an uint value
+      if roundPresicion then -- make sure roundPresicion is a uint value
         roundPresicion = math.floor(roundPresicion + 0.5)
+        roundPresicion = roundPresicion > 0 and roundPresicion or nil
+      end
+
+      if roundPresicion then -- make sure to not add trailing zeros
+        local stringValue = string.format("%."..roundPresicion.."f", value)
+        local stringIndex = 0
+        while(stringIndex < roundPresicion and string.sub(stringValue, -1 - stringIndex, -1 - stringIndex) == "0") do
+          stringIndex = stringIndex + 1
+        end
+        roundPresicion = roundPresicion - stringIndex
         roundPresicion = roundPresicion > 0 and roundPresicion or nil
       end
 
@@ -39,4 +49,3 @@ if LSlib and LSlib.utils then
 else
   require "utils"
 end
-  

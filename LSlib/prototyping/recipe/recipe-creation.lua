@@ -14,7 +14,7 @@ if not LSlib.recipe then require "recipe" else
 
   function LSlib.recipe.duplicate(recipeName, newRecipeName)
     if not data.raw["recipe"][recipeName] then
-      LSlib.recipe.create(newRecipeName)
+      return LSlib.recipe.create(newRecipeName)
     end
     LSlib.recipe.recipePrototypeCleanup(recipeName)
 
