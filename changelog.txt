@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2020.11.22
+Date: 22. 11. 2020
+  Modding:
+    - changelog fix by Fr_Dae
+---------------------------------------------------------------------------------------------------
 Version: 2020.8.22
 Date: 22. 8. 2020
   Modding:
@@ -135,9 +140,10 @@ Date: 22. 7. 2019
   Modding:
     - Added LSlib.utils.table.orderedPairs(...)
 ---------------------------------------------------------------------------------------------------
-Version: 2019.7.21 - Pre-release
+Version: 2019.7.21
 Date: 21. 7. 2019
   Major Features:
+    - Pre-release
     - Initial stand alone release (with all existing functions)
   Modding:
     - Added LSlib.entity.addCraftingCategory(...)
