@@ -8,6 +8,10 @@ if not (LSlib and LSlib.gui) then require "gui" else
     local root = game.players[playerIndex].gui[layoutTable.name]
     LSlib.gui.addChildren(root, layoutTable.children)
 
+    if layoutTable.name == "screen" then
+      root[LSlib.gui.getRootElementName(layoutTable)].force_auto_center()
+    end
+
     -- return reference to first child added to the root
     return root[LSlib.gui.getRootElementName(layoutTable)]
   end
@@ -26,7 +30,6 @@ if not (LSlib and LSlib.gui) then require "gui" else
   end
 
   function LSlib.gui.addChildren(parentElement, childrenLayoutTable)
-
     for childIndex, child in pairs(childrenLayoutTable or {}) do
       local childElementTable = {} -- create argument list for this element
       for childElementIndex, childElement in pairs(child) do
@@ -43,8 +46,12 @@ if not (LSlib and LSlib.gui) then require "gui" else
         )
         return -- not creating child and children of this child
       end
-
+      
       local childElement = parentElement.add(childElementTable) -- add child
+      if childElementTable.drag_target then
+        childElement.drag_target = LSlib.gui.getElement(parentElement.player_index, childElementTable.drag_target)
+      end
+
       if childElementTable.visible == false or
          childElementTable.hidden  == true  then
         --game.print(string.format("hiding element %q", childElement.name))

@@ -65,4 +65,45 @@ if not LSlib.styles then require "styles" else
     guiStyle[customFrameSpecifications.name] = util.table.deepcopy(customFrameStyle)
   end
 
+  function LSlib.styles.addWidgetStyle(customWidgetSpecifications)
+    local guiStyle = data.raw["gui-style"]["default"]
+    if not guiStyle then return end
+
+    if (not customWidgetSpecifications.name)     or
+       guiStyle[customWidgetSpecifications.name] then
+      return -- already exist
+    end
+
+    local defaultWidgetStyle = customWidgetSpecifications.parent and {} or util.table.deepcopy(guiStyle["empty_widget"])
+    -- https://github.com/wube/factorio-data/blob/master/core/prototypes/style.lua#L9714
+    local customWidgetStyle =
+    {
+      type                     = "empty_widget_style"                                                                                                                                 ,
+      name                     = customWidgetSpecifications.name                                                                                                                      ,
+      parent                   = customWidgetSpecifications.parent                                                                                                                    ,
+
+      height                   = customWidgetSpecifications.height                   or defaultWidgetStyle.height                                                                     ,
+      minimal_height           = customWidgetSpecifications.minimal_height           or ((not customWidgetSpecifications.height)             and defaultWidgetStyle.minimal_height   ),
+      maximal_height           = customWidgetSpecifications.maximal_height           or ((not customWidgetSpecifications.height)             and defaultWidgetStyle.maximal_height   ),
+
+      margin                   = customWidgetSpecifications.margin                   or defaultWidgetStyle.margin                                                                    ,
+      left_margin              = customWidgetSpecifications.left_margin              or ((not customWidgetSpecifications.margin)             and defaultWidgetStyle.left_margin      ),
+      right_margin             = customWidgetSpecifications.right_margin             or ((not customWidgetSpecifications.margin)             and defaultWidgetStyle.right_margin     ),
+      top_margin               = customWidgetSpecifications.top_margin               or ((not customWidgetSpecifications.margin)             and defaultWidgetStyle.top_margin       ),
+      bottom_margin            = customWidgetSpecifications.bottom_margin            or ((not customWidgetSpecifications.margin)             and defaultWidgetStyle.bottom_margin    ),
+
+      padding                  = customWidgetSpecifications.padding                  or defaultWidgetStyle.padding                                                                   ,
+      top_padding              = customWidgetSpecifications.top_padding              or ((not customWidgetSpecifications.padding)            and defaultWidgetStyle.top_padding      ),
+      bottom_padding           = customWidgetSpecifications.bottom_padding           or ((not customWidgetSpecifications.padding)            and defaultWidgetStyle.bottom_padding   ),
+      left_padding             = customWidgetSpecifications.left_padding             or ((not customWidgetSpecifications.padding)            and defaultWidgetStyle.left_padding     ),
+      right_padding            = customWidgetSpecifications.right_padding            or ((not customWidgetSpecifications.padding)            and defaultWidgetStyle.right_padding    ),
+
+
+      horizontally_stretchable = customWidgetSpecifications.horizontally_stretchable or defaultWidgetStyle.horizontally_stretchable                                                   ,
+      vertically_stretchable   = customWidgetSpecifications.vertically_stretchable   or defaultWidgetStyle.vertically_stretchable                                                     ,
+    }
+
+    -- add new frame to data
+    guiStyle[customWidgetSpecifications.name] = util.table.deepcopy(customWidgetStyle)
+  end
 end

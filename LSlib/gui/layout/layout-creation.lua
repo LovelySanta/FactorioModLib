@@ -5,10 +5,12 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   require "layout-properties"
 
   function LSlib.gui.layout.create(rootElement)
-    if not(rootElement == "top"    or
-           rootElement == "left"   or
-           rootElement == "center" or
-           rootElement == "goal"   ) then
+    if not(rootElement == "top"      or
+           rootElement == "left"     or
+           rootElement == "center"   or
+           rootElement == "relative" or
+           rootElement == "screen"   or
+           rootElement == "goal"     ) then
       rootElement = "center"
     end
 

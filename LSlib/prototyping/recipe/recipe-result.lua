@@ -187,32 +187,54 @@ if not LSlib.recipe then require "recipe" else
 
 
   function LSlib.recipe.getResultCount(recipeName, resultName)
+    -- resultName can be nil
     if not data.raw["recipe"][recipeName] then return end
     LSlib.recipe.recipePrototypeCleanup(recipeName)
 
     if data.raw["recipe"][recipeName].result then
-      return data.raw["recipe"][recipeName].result_count or 1
+      if resultName == nil or data.raw["recipe"][recipeName].result == resultName then
+        return data.raw["recipe"][recipeName].result_count or 1
+      else
+        return 0
+      end
     elseif data.raw["recipe"][recipeName].results then
       for resultIndex, result in pairs(data.raw["recipe"][recipeName].results) do
-        return data.raw["recipe"][recipeName].results[resultIndex].amount or 1
+        if resultName == nil or (result.name or result[1] or "") == resultName then
+          return data.raw["recipe"][recipeName].results[resultIndex].amount or 1
+        end
       end
+      return 0
 
     elseif data.raw["recipe"][recipeName].normal then
       if data.raw["recipe"][recipeName].normal.result then
-        return data.raw["recipe"][recipeName].normal.result_count or 1
+        if resultName == nil or data.raw["recipe"][recipeName].normal.result == resultName then
+          return data.raw["recipe"][recipeName].normal.result_count or 1
+        else
+          return 0
+        end
       elseif data.raw["recipe"][recipeName].normal.results then
         for resultIndex, result in pairs(data.raw["recipe"][recipeName].normal.results) do
-          return data.raw["recipe"][recipeName].normal.results[resultIndex].amount or 1
+          if resultName == nil or (result.name or result[1] or "") == resultName then
+            return data.raw["recipe"][recipeName].results[resultIndex].normal.amount or 1
+          end
         end
+        return 0
       end
 
     elseif data.raw["recipe"][recipeName].expensive then
       if data.raw["recipe"][recipeName].expensive.result then
-        return data.raw["recipe"][recipeName].expensive.result_count or 1
+        if resultName == nil or data.raw["recipe"][recipeName].expensive.result == resultName then
+          return data.raw["recipe"][recipeName].expensive.result_count or 1
+        else
+          return 0
+        end
       elseif data.raw["recipe"][recipeName].expensive.results then
         for resultIndex, result in pairs(data.raw["recipe"][recipeName].expensive.results) do
-          return data.raw["recipe"][recipeName].expensive.results[resultIndex].amount or 1
+          if resultName == nil or (result.name or result[1] or "") == resultName then
+            return data.raw["recipe"][recipeName].results[resultIndex].expensive.amount or 1
+          end
         end
+        return 0
       end
     end
   end

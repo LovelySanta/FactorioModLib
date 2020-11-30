@@ -115,17 +115,16 @@ if not LSlib.styles then require "styles" else
 
     -- tab inner upper frame (the root background of the tab) -------------------
     ----------------------------------------------------------------------------
-    local tabInsideUpperFrame = defaultStyles["tabbed_pane"] -- vanilla style
+    local tabInsideUpperFrame = defaultStyles[defaultStyles["tabbed_pane"].tab_content_frame.parent] -- vanilla style
     local tabContentFrameStyleSpecification = tabStyleSpecification.contentFrame
+    
+    tabContentFrameStyleSpecification.top_padding      = tabInsideUpperFrame.top_padding
+    tabContentFrameStyleSpecification.bottom_padding   = tabInsideUpperFrame.bottom_padding
+    tabContentFrameStyleSpecification.left_padding     = tabInsideUpperFrame.left_padding
+    tabContentFrameStyleSpecification.right_padding    = tabInsideUpperFrame.right_padding
+    --tabContentFrameStyleSpecification.padding          = tabInsideUpperFrame.padding
 
-    tabContentFrameStyleSpecification.top_padding      = tabInsideUpperFrame.tab_content_frame.top_padding
-    tabContentFrameStyleSpecification.bottom_padding   = tabInsideUpperFrame.tab_content_frame.bottom_padding
-    tabContentFrameStyleSpecification.left_padding     = tabInsideUpperFrame.tab_content_frame.left_padding
-    tabContentFrameStyleSpecification.right_padding    = tabInsideUpperFrame.tab_content_frame.right_padding
-    tabContentFrameStyleSpecification.padding          = tabInsideUpperFrame.padding
-
-    tabContentFrameStyleSpecification.vertical_spacing = tabInsideUpperFrame.graphical_set
-    tabContentFrameStyleSpecification.graphical_set    = tabInsideUpperFrame.tab_content_frame.graphical_set
+    tabContentFrameStyleSpecification.graphical_set    = tabInsideUpperFrame.graphical_set
 
     tabContentFrameStyleSpecification.horizontally_stretchable = "on"
 

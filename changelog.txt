@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2020.11.29
+Date: 26. 11. 2020
+  Modding:
+    - Added basic support for real draggable widgets
+    - Fixed some styles to be more inline with factorio v1.1.0
+    - Updated LSlib.recipe.getResultCount(...) to use optional parameters
+---------------------------------------------------------------------------------------------------
+Version: 2020.11.26
+Date: 26. 11. 2020
+  Features:
+    - Update to factorio v1.1.0
+---------------------------------------------------------------------------------------------------
 Version: 2020.8.22
 Date: 22. 8. 2020
   Modding:

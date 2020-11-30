@@ -210,7 +210,7 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
   end
 
   function LSlib.gui.layout.addSprite(layoutTable, parentPath, spriteName, spriteOptions)
-    entityPreviewOptions = entityPreviewOptions or {}
+    spriteOptions = spriteOptions or {}
 
     return LSlib.gui.layout.addElement(layoutTable, parentPath, {
       type                   = "sprite"                            ,
@@ -223,6 +223,22 @@ if not (LSlib and LSlib.gui and LSlib.gui.layout) then require "layout" else
       visible                = spriteOptions.visible               ,
       enabled                = spriteOptions.enabled               ,
       ignored_by_interaction = spriteOptions.ignored_by_interaction,
+    })
+  end
+
+  function LSlib.gui.layout.addEmptyWidget(layoutTable, parentPath, widgetName, widgetOptions)
+    widgetOptions = widgetOptions or {}
+
+    return LSlib.gui.layout.addElement(layoutTable, parentPath, {
+      type                   = "empty-widget",
+      name                   = widgetName    ,
+
+      -- optional options specified in table (or nil)
+      drag_target            = layoutTable.name == "screen" and widgetOptions.drag_target or nil,
+
+      style                  = widgetOptions.style  ,
+      visible                = widgetOptions.visible,
+      enabled                = widgetOptions.enabled,
     })
   end
 
