@@ -253,16 +253,13 @@ if not LSlib.recipe then require "recipe" else
 
     if data.raw["recipe"][recipeName].results then
       for index, result in pairs(data.raw["recipe"][recipeName].results) do
-		if result.name then
-			if result.name == resultName then
-			  result.amount = resultAmount
-			  result.amount_min = nil
-			  result.amount_max = nil
-			  break
-			end
-		else
-			result[2] = resultAmount
-		end
+        if result.name then
+          result.amount = resultAmount
+          result.amount_min = nil
+          result.amount_max = nil
+        else
+          result[2] = resultAmount
+        end
       end
     end
 
