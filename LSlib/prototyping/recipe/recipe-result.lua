@@ -251,7 +251,7 @@ if not LSlib.recipe then require "recipe" else
 
     if data.raw["recipe"][recipeName].results then
       for index, result in pairs(data.raw["recipe"][recipeName].results) do
-		if ( result.name == nil ) then
+		if result.name == nil then
 			data.raw["recipe"][recipeName].results[index] = {resultName, resultAmount}
 		else
 			if result.name == resultName then
