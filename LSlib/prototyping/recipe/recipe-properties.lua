@@ -145,4 +145,20 @@ if not LSlib.recipe then require "recipe" else
     end
   end
 
+
+
+  function LSlib.recipe.setTints(recipeName, primaryTint, secondaryTint, tertiaryTint, quaternaryTint)
+    if not data.raw["recipe"][recipeName] then return end
+    LSlib.recipe.recipePrototypeCleanup(recipeName)
+    
+    if not LSlib.utils.table.isTable(data.raw["recipe"][recipeName].crafting_machine_tint) then 
+      data.raw["recipe"][recipeName].crafting_machine_tint = {} 
+    end
+
+    if primaryTint    then data.raw["recipe"][recipeName].crafting_machine_tint.primary    = primaryTint    end
+    if secondaryTint  then data.raw["recipe"][recipeName].crafting_machine_tint.secondary  = secondaryTint  end
+    if tertiaryTint   then data.raw["recipe"][recipeName].crafting_machine_tint.tertiary   = tertiaryTint   end
+    if quaternaryTint then data.raw["recipe"][recipeName].crafting_machine_tint.quaternary = quaternaryTint end
+  end
+
 end

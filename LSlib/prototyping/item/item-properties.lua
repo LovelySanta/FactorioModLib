@@ -74,11 +74,25 @@ if not LSlib.item then require "item" else
     data.raw[itemType][itemName].stack_size = stack_size
   end
 
+
+
   function LSlib.item.editStackSize(itemType, itemName, amountMultiplier)
     if not data.raw[itemType] then return end
     if not data.raw[itemType][itemName] then return end
 
     data.raw[itemType][itemName].stack_size = data.raw[itemType][itemName].stack_size * amountMultiplier
+  end
+
+
+
+  function LSlib.item.getFluidColors(fluidName)
+    if not data.raw.fluid then return {} end
+    if not data.raw.fluid[fluidName] then return {} end
+    
+    return {
+      data.raw.fluid[fluidName].base_color,
+      data.raw.fluid[fluidName].flow_color,
+    }
   end
 
 end
