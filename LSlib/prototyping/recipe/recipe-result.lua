@@ -200,7 +200,8 @@ if not LSlib.recipe then require "recipe" else
     elseif data.raw["recipe"][recipeName].results then
       for resultIndex, result in pairs(data.raw["recipe"][recipeName].results) do
         if resultName == nil or (result.name or result[1] or "") == resultName then
-          return data.raw["recipe"][recipeName].results[resultIndex].amount or 1
+          return data.raw["recipe"][recipeName].results[resultIndex].amount or
+                 data.raw["recipe"][recipeName].results[resultIndex][2] or 1
         end
       end
       return 0
@@ -215,8 +216,8 @@ if not LSlib.recipe then require "recipe" else
       elseif data.raw["recipe"][recipeName].normal.results then
         for resultIndex, result in pairs(data.raw["recipe"][recipeName].normal.results) do
           if resultName == nil or (result.name or result[1] or "") == resultName then
-            return data.raw["recipe"][recipeName].normal.results[resultIndex].amount or
-                   data.raw["recipe"][recipeName].expensive.results[resultIndex][2] or 1
+            return data.raw["recipe"][recipeName].normal.results[resultIndex].amount or 
+                   data.raw["recipe"][recipeName].normal.results[resultIndex][2] or 1
           end
         end
         return 0
@@ -263,7 +264,7 @@ if not LSlib.recipe then require "recipe" else
           end
           break
         end
-	  end
+      end
     end
 
     if data.raw["recipe"][recipeName].normal then
