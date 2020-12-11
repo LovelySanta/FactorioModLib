@@ -268,28 +268,58 @@ if not LSlib.recipe then require "recipe" else
     end
 
     if data.raw["recipe"][recipeName].normal then
-      if data.raw["recipe"][recipeName].normal.results then
-        for index, result in pairs(data.raw["recipe"][recipeName].normal.results) do
-          if result.name == resultName then
-            result.amount = resultAmount
-            result.amount_min = nil
-            result.amount_max = nil
-            break
+      if data.raw["recipe"][recipeName].normal.results or data.raw["recipe"][recipeName].normal.result then
+	    if data.raw["recipe"][recipeName].normal.result then
+		  local result = data.raw["recipe"][recipeName].normal.result
+		  if result == resultName or ( result.name and result.name == resultName) then
+		    if type(result) == "table" then
+		      result[2] = resultAmount
+		    end
+		  
+		    -- Upgrade to a table so we can specify more than 1 result
+		    if type(result) == "string" then
+			   data.raw["recipe"][recipeName].normal.result = nil
+		       data.raw["recipe"][recipeName].normal.results = {{type="item", name=resultName, amount=resultAmount}}
+		    end
+		  end
+		else
+          for index, result in pairs(data.raw["recipe"][recipeName].normal.results) do
+            if result.name == resultName then
+              result.amount = resultAmount
+              result.amount_min = nil
+              result.amount_max = nil
+              break
+            end
           end
-        end
+		end
       end
     end
 
     if data.raw["recipe"][recipeName].expensive then
-      if data.raw["recipe"][recipeName].expensive.results then
-        for index, result in pairs(data.raw["recipe"][recipeName].expensive.results) do
-          if result.name == resultName then
-            result.amount = resultAmount
-            result.amount_min = nil
-            result.amount_max = nil
-            break
+      if data.raw["recipe"][recipeName].expensive.results or data.raw["recipe"][recipeName].expensive.result then
+	    if data.raw["recipe"][recipeName].expensive.result then
+		  local result = data.raw["recipe"][recipeName].expensive.result
+		  if result == resultName or ( result.name and result.name == resultName) then
+		    if type(result) == "table" then
+		      result[2] = resultAmount
+		    end
+		  
+		    -- Upgrade to a table so we can specify more than 1 result
+		    if type(result) == "string" then
+			   data.raw["recipe"][recipeName].expensive.result = nil
+		       data.raw["recipe"][recipeName].expensive.results = {{type="item", name=resultName, amount=resultAmount}}
+		    end
+		  end
+		else
+          for index, result in pairs(data.raw["recipe"][recipeName].expensive.results) do
+            if result.name == resultName then
+              result.amount = resultAmount
+              result.amount_min = nil
+              result.amount_max = nil
+              break
+            end
           end
-        end
+		end
       end
     end
 
