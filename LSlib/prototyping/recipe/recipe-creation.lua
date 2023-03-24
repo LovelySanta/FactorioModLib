@@ -102,6 +102,38 @@ if not LSlib.recipe then require "recipe" else
       LSlib.utils.table.isEmpty(data.raw["recipe"][recipeName].normal) then
       data.raw["recipe"][recipeName].expensive = nil
     end
+
+    -- cleans the ingredients/products list of a recipe
+    for _, propertyList in pairs{"ingredients", "results"} do
+      if data.raw["recipe"][recipeName][propertyList] then
+        for i, property in pairs(data.raw["recipe"][recipeName][propertyList]) do
+          data.raw["recipe"][recipeName][propertyList][i] = {
+            name = property["name"] or property[1],
+            amount = property["amount"] or property[2] or 1,
+            type = property["type"] or "item",
+          }
+        end
+      end
+      if data.raw["recipe"][recipeName].normal and data.raw["recipe"][recipeName].normal[propertyList] then
+        for i, property in pairs(data.raw["recipe"][recipeName].normal[propertyList]) do
+          data.raw["recipe"][recipeName].normal[propertyList][i] = {
+            name = property["name"] or property[1],
+            amount = property["amount"] or property[2] or 1,
+            type = property["type"] or "item",
+          }
+        end
+      end
+      if data.raw["recipe"][recipeName].expensive and data.raw["recipe"][recipeName].expensive[propertyList] then
+        for i, property in pairs(data.raw["recipe"][recipeName].expensive[propertyList]) do
+          data.raw["recipe"][recipeName].expensive[propertyList][i] = {
+            name = property["name"] or property[1],
+            amount = property["amount"] or property[2] or 1,
+            type = property["type"] or "item",
+          }
+        end
+      end
+    end
+
   end
 
 end
